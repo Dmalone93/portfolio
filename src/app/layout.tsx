@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { CustomCursor } from "@/components/custom-cursor";
 import { getProfile } from "@/lib/site-content";
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} antialiased`}>
       <body className="flex min-h-dvh flex-col bg-white text-[#111111] font-[family-name:var(--font-geist)]">
+        <CustomCursor />
         <Nav name={profile.name} />
         <main className="flex-1">{children}</main>
         <Footer email={profile.email} linkedin={profile.linkedin} />
