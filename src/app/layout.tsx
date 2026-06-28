@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
+import { Nav } from "@/components/nav";
+import { Footer } from "@/components/footer";
+import { getProfile } from "@/lib/site-content";
 import "./globals.css";
 
 const geist = Geist({
@@ -18,15 +21,19 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const profile = await getProfile();
+
   return (
     <html lang="en" className={`${geist.variable} antialiased`}>
-      <body className="min-h-dvh bg-white text-[#111111] font-[family-name:var(--font-geist)]">
-        {children}
+      <body className="flex min-h-dvh flex-col bg-white text-[#111111] font-[family-name:var(--font-geist)]">
+        <Nav name={profile.name} />
+        <main className="flex-1">{children}</main>
+        <Footer email={profile.email} linkedin={profile.linkedin} />
       </body>
     </html>
   );
