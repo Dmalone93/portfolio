@@ -6,12 +6,12 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 export default async function Home() {
   const [profile, projects] = await Promise.all([getProfile(), getProjects()]);
 
-  const heroDescription = `At DFYNE, I built the UX practice from scratch — hired 10 people, established CRO from zero, and shipped features that lifted AOV by 13%. Before that, I designed trading interfaces at JP Morgan and margin analytics at OpenGamma. I come from fine art photography, so I think about composition and clarity in everything I make.`;
+  const heroDescription = `Product and UX designer who works across the full stack — research, systems, prototyping, and front-end implementation. At DFYNE I built the UX practice from zero, hired the team, and shipped features that moved real numbers. Before that, trading platforms at JP Morgan and margin analytics at OpenGamma.`;
 
   return (
     <div>
       <AnimatedHero
-        headline="I design products that move numbers."
+        headline="I design and ship, from concept to production."
         description={heroDescription}
       />
 

@@ -69,7 +69,7 @@ export function AnimatedHero({
         {words.map((word, i) => (
           <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.2em] last:mr-0">
             <span
-              className="inline-block font-[family-name:var(--font-geist)] text-5xl sm:text-7xl lg:text-8xl tracking-tight transition-[opacity,transform] duration-[800ms]"
+              className="inline-block font-[family-name:var(--font-geist)] text-4xl font-semibold sm:text-6xl lg:text-7xl tracking-normal leading-[1.15] transition-[opacity,transform] duration-[800ms]"
               style={{
                 transitionTimingFunction: "var(--easing)",
                 transitionDelay: `${800 + i * 100}ms`,
