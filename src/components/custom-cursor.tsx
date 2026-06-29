@@ -80,12 +80,12 @@ export function CustomCursor() {
     <>
       <div
         ref={dotRef}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-[#2563eb] opacity-0 transition-opacity duration-150"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] h-2 w-2 rounded-full bg-white opacity-0 transition-opacity duration-150"
         aria-hidden="true"
       />
       <div
         ref={circleRef}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] h-8 w-8 rounded-full border border-[#2563eb] opacity-0 transition-opacity duration-150"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] h-8 w-8 rounded-full border border-white opacity-0 transition-opacity duration-150"
         aria-hidden="true"
       />
     </>
