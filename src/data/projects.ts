@@ -106,6 +106,64 @@ export const projects: Project[] = [
     prototypeViewport: "desktop",
   },
   {
+    slug: "mytcg",
+    title: "MyTCG",
+    company: "PERSONAL PROJECT",
+    sortOrder: 1,
+    portfolioVisible: true,
+    eyebrow: "One Piece TCG Collection Tracker",
+    summary:
+      "Solo-designed and built a collection management app for One Piece TCG collectors — card scanning, portfolio tracking, market pricing, and wishlists across 2,255+ cards.",
+    stats: [
+      { key: "cards", value: "2255+", label: "Cards in database" },
+      { key: "variants", value: "3485+", label: "Variant records" },
+      { key: "scan-modes", value: "3", label: "Scan modes" },
+      { key: "regions", value: "3", label: "Pricing regions", detail: "UK, EU, US" },
+    ],
+    challenge: [
+      "The One Piece TCG community lacks a purpose-built collector tool. Existing solutions are fragmented: spreadsheets for tracking, separate apps for pricing, manual lookups for card data.",
+      "Collectors juggle multiple sources to answer basic questions like \"What's my collection worth?\" or \"Is now a good time to buy this card?\"",
+      "Price data is scattered across regional marketplaces with no single source. Card identification is slow — looking up set codes, matching variants and printings manually.",
+    ],
+    processSteps: [
+      {
+        key: "principles",
+        title: "Design principles",
+        text: "Minimalist editorial aesthetic inspired by Wise and Bloomberg. Accessibility-first: as a dyslexic user, I enforced 14px minimum body text, high-contrast type, and scannable layouts. Data density without clutter — progressive disclosure over information dumps.",
+      },
+      {
+        key: "scanning",
+        title: "Card scanning (3 modes)",
+        text: "Price Check (scan and see the price), Add Single (scan, select variant, choose collection), and Batch Scan (scan multiple cards, stage locally with running summary, add all at once). Variant selection is critical — the same card can have 5+ printings at wildly different prices.",
+      },
+      {
+        key: "dashboard",
+        title: "Home dashboard",
+        text: "Portfolio value with interactive SVG chart (hover/tap for exact values), most valuable cards, recently added, price movers, deals below 30-day average, and AI-summarised news in a newspaper-style grid.",
+      },
+      {
+        key: "browse",
+        title: "Search & browse",
+        text: "2,255+ cards searchable with set pill carousel, slide-out filter panel, infinite scroll (60 cards at a time), owned indicators with set completion bars, and sort by price via pre-loaded pricing data.",
+      },
+    ],
+    whatChanged: [
+      "Three distinct scan modes based on user intent rather than a single generic flow — price check, single add, and batch scan each optimised for their use case.",
+      "Removed the batch scan \"Clear\" button after accidentally wiping 10 staged scans during testing. Destructive actions shouldn't sit next to routine controls.",
+      "Region-aware pricing (UK/EU/US) adjusts currency and marketplace links throughout the app — collectors operate in different markets.",
+      "Built own card database: a reconciliation pipeline merging three sources into unified Postgres schema with variant-aware records. All APIs read from the DB, not external services at runtime.",
+      "QR code sharing generates public collection pages viewable without an account.",
+    ],
+    impact: [
+      "Live and actively used collection tracker with 2,255+ base cards and 3,485+ variants.",
+      "Full end-to-end product: OCR scanning pipeline, AI-powered news feed, interactive portfolio charts, region-aware pricing, and collection sharing.",
+      "Designed and built solo — from research and IA through to production deployment on Vercel with Neon Postgres and Clerk Auth.",
+    ],
+    liveUrl: "https://mytcg-dmalone93s-projects.vercel.app",
+    embedMode: "external-only",
+    prototypeViewport: "mobile",
+  },
+  {
     slug: "gallery-design-bedrooms",
     title: "Gallery Design Bedrooms",
     company: "CONTRACT",
