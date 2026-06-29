@@ -2,71 +2,45 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/about", label: "About" },
-  { href: "/resume", label: "Resume" },
-  { href: "/contact", label: "Contact" },
-];
+import { MenuOverlay } from "@/components/menu-overlay";
 
 export function Nav({ name }: { name: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#e5e5e5] bg-white/80 backdrop-blur-sm">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="text-lg font-semibold tracking-tight text-[#111]">
-          {name}
-        </Link>
+    <>
+      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <Link
+            href="/"
+            className="text-xs tracking-[0.1em] uppercase text-[var(--text)] font-[family-name:var(--font-mono)]"
+          >
+            {name}
+          </Link>
 
-        {/* Desktop links */}
-        <ul className="hidden gap-8 md:flex">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="text-sm text-[#555] transition-colors hover:text-[#111]"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/contact"
+              className="cta-underline hidden sm:inline-flex"
+            >
+              Start a project <span aria-hidden="true">&rarr;</span>
+            </Link>
 
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="md:hidden p-2 text-[#555]"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            {menuOpen ? (
-              <path d="M6 6l12 12M6 18L18 6" />
-            ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      </nav>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              className="p-1 text-[var(--text-muted)] hover:text-[var(--text)] transition-colors"
+              aria-label="Open menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              </svg>
+            </button>
+          </div>
+        </nav>
+      </header>
 
-      {/* Mobile menu */}
-      {menuOpen && (
-        <ul className="border-t border-[#e5e5e5] px-6 py-4 md:hidden">
-          {links.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                className="block py-2 text-sm text-[#555] hover:text-[#111]"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </header>
+      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
+    </>
   );
 }
