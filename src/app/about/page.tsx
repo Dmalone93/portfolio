@@ -1,94 +1,108 @@
 import { getProfile, getResumeContent } from "@/lib/site-content";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { MediaPlaceholder } from "@/components/media-placeholder";
 
 export default async function AboutPage() {
-  const [profile, resume] = await Promise.all([
-    getProfile(),
-    getResumeContent(),
-  ]);
+  const [profile, resume] = await Promise.all([getProfile(), getResumeContent()]);
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      <ScrollReveal>
-        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          A bit about me
-        </h1>
-      </ScrollReveal>
+    <div className="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+      {/* Split layout */}
+      <div className="flex flex-col gap-12 lg:flex-row lg:gap-16">
+        {/* Copy — left */}
+        <div className="flex-1 lg:max-w-[60%]">
+          <ScrollReveal>
+            <p className="label-mono">ABOUT</p>
+            <h1 className="mt-3 font-[family-name:var(--font-serif)] text-3xl italic sm:text-5xl tracking-tight">
+              A bit about me
+            </h1>
+          </ScrollReveal>
 
-      <ScrollReveal>
-        <section className="mt-8 space-y-4 text-[#555] leading-relaxed">
-          <p>{profile.summary}</p>
-          <p>{profile.mission}</p>
-        </section>
-      </ScrollReveal>
+          <ScrollReveal>
+            <div className="mt-10 space-y-6 text-[var(--text-muted)] leading-relaxed">
+              <p>
+                I&apos;m Declan — a product and UX designer based in Glasgow, currently leading UX at DFYNE.
+              </p>
+              <p>
+                I started in fine art photography at the Glasgow School of Art, then moved into software through a full-stack development course at CodeClan. That crossover — visual composition meets engineering logic — shapes how I approach every design problem.
+              </p>
+              <p>
+                I&apos;ve designed trading platforms at JP Morgan, margin analytics tools at OpenGamma, and ecommerce experiences at DFYNE and Toolstop. I care most about the intersection of design systems, data, and commercial outcomes.
+              </p>
+              <p>
+                When I&apos;m not designing, I&apos;m probably reading about systems thinking or falling down a rabbit hole about ancient artifacts.
+              </p>
+            </div>
+          </ScrollReveal>
 
-      <ScrollReveal>
-        <section className="mt-10">
-          <h2 className="text-lg font-semibold">The basics</h2>
-          <dl className="mt-4 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2">
-            <div>
-              <dt className="text-[#888]">Role</dt>
-              <dd className="font-medium">
-                {profile.title} at {profile.company}
-              </dd>
+          {/* Stats row */}
+          <ScrollReveal>
+            <div className="mt-12 flex flex-wrap gap-4">
+              {[
+                { value: "6+", label: "YEARS" },
+                { value: "50+", label: "PROJECTS" },
+                { value: "10", label: "PEOPLE HIRED" },
+              ].map((stat) => (
+                <div key={stat.label} className="border border-[var(--border)] rounded-lg px-5 py-4">
+                  <p className="font-[family-name:var(--font-mono)] text-2xl font-light">{stat.value}</p>
+                  <p className="label-mono mt-1">{stat.label}</p>
+                </div>
+              ))}
             </div>
-            <div>
-              <dt className="text-[#888]">Location</dt>
-              <dd className="font-medium">{profile.location}</dd>
-            </div>
-            <div>
-              <dt className="text-[#888]">Email</dt>
-              <dd>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="font-medium text-[#2563eb] hover:underline"
-                >
-                  {profile.email}
-                </a>
-              </dd>
-            </div>
-            {profile.linkedin &&
-              profile.linkedin !== "LinkedIn URL pending" && (
+          </ScrollReveal>
+
+          {/* Details */}
+          <ScrollReveal>
+            <div className="mt-12">
+              <p className="label-mono">THE BASICS</p>
+              <dl className="mt-4 grid gap-x-8 gap-y-4 text-sm sm:grid-cols-2">
                 <div>
-                  <dt className="text-[#888]">LinkedIn</dt>
-                  <dd>
-                    <a
-                      href={profile.linkedin}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-[#2563eb] hover:underline"
-                    >
-                      LinkedIn
-                    </a>
+                  <dt className="label-mono text-[10px]">Role</dt>
+                  <dd className="mt-1 text-[var(--text)]">{profile.title} at {profile.company}</dd>
+                </div>
+                <div>
+                  <dt className="label-mono text-[10px]">Location</dt>
+                  <dd className="mt-1 text-[var(--text)]">{profile.location}</dd>
+                </div>
+                <div>
+                  <dt className="label-mono text-[10px]">Email</dt>
+                  <dd className="mt-1">
+                    <a href={`mailto:${profile.email}`} className="cta-underline text-[11px]">{profile.email}</a>
                   </dd>
                 </div>
-              )}
-          </dl>
-        </section>
-      </ScrollReveal>
+              </dl>
+            </div>
+          </ScrollReveal>
 
-      {/* Skills from resume */}
-      <ScrollReveal>
-        <section className="mt-10">
-          <h2 className="text-lg font-semibold">Skills</h2>
-          <div className="mt-4 grid gap-6 sm:grid-cols-2">
-            {resume.skillSections.map((section, i) => (
-              <ScrollReveal key={section.heading} delay={i * 80}>
-                <div>
-                  <h3 className="text-sm font-medium text-[#888]">
-                    {section.heading}
-                  </h3>
-                  {section.lines.map((line) => (
-                    <p key={line} className="mt-1 text-sm text-[#555]">
-                      {line.replace(/\*\*/g, "")}
-                    </p>
-                  ))}
-                </div>
-              </ScrollReveal>
-            ))}
+          {/* Skills */}
+          <ScrollReveal>
+            <div className="mt-12">
+              <p className="label-mono">SKILLS</p>
+              <div className="mt-4 grid gap-6 sm:grid-cols-2">
+                {resume.skillSections.map((section) => (
+                  <div key={section.heading}>
+                    <h3 className="label-mono text-[10px] text-[var(--text-dim)]">{section.heading}</h3>
+                    {section.lines.map((line) => (
+                      <p key={line} className="mt-1 text-sm text-[var(--text-muted)]">
+                        {line.replace(/\*\*/g, "")}
+                      </p>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Media — right (sticky) */}
+        <div className="lg:w-[40%]">
+          <div className="lg:sticky lg:top-24">
+            <ScrollReveal>
+              <MediaPlaceholder label="Photo / video" aspectRatio="3/4" />
+            </ScrollReveal>
           </div>
-        </section>
-      </ScrollReveal>
+        </div>
+      </div>
     </div>
   );
 }
