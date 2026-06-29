@@ -1,76 +1,80 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
-import { MagneticButton } from "@/components/magnetic-button";
+import { useEffect, useRef, useState } from "react";
 
 export function AnimatedHero({
-  name,
-  title,
-  mission,
+  headline,
+  description,
 }: {
-  name: string;
-  title: string;
-  mission: string;
+  headline: string;
+  description: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Trigger animations after mount
-    const timer = setTimeout(() => setMounted(true), 100);
+    const timer = setTimeout(() => setMounted(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const glow = glowRef.current;
     const container = containerRef.current;
     if (!glow || !container) return;
-
     const rect = container.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    glow.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(255, 255, 255, 0.03), transparent 60%)`;
+  };
 
-    glow.style.background = `radial-gradient(300px circle at ${x}px ${y}px, rgba(37, 99, 235, 0.05), transparent 60%)`;
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
+  const handleMouseLeave = () => {
     const glow = glowRef.current;
-    if (!glow) return;
-    glow.style.background = "transparent";
-  }, []);
+    if (glow) glow.style.background = "transparent";
+  };
 
-  const words = name.split(" ");
-  const totalNameDuration = words.length * 80 + 600; // last word start + animation duration
+  const words = headline.split(" ");
 
   return (
     <section
       ref={containerRef}
-      className="relative py-16 sm:py-24"
+      className="relative flex min-h-dvh flex-col items-center justify-center px-6 text-center"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Cursor glow */}
       <div
         ref={glowRef}
-        className="pointer-events-none absolute inset-0 transition-[background] duration-300"
+        className="pointer-events-none absolute inset-0"
         aria-hidden="true"
       />
 
-      {/* Name with staggered word reveal */}
-      <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+      {/* Animated crosshair motif */}
+      <div
+        className="mb-12 h-16 w-16 transition-opacity duration-1000"
+        style={{
+          opacity: mounted ? 1 : 0,
+          transitionTimingFunction: "var(--easing)",
+        }}
+      >
+        <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" className="animate-[spin_20s_linear_infinite]">
+          <circle cx="32" cy="32" r="28" />
+          <line x1="32" y1="0" x2="32" y2="64" />
+          <line x1="0" y1="32" x2="64" y2="32" />
+          <circle cx="32" cy="32" r="8" />
+        </svg>
+      </div>
+
+      {/* Headline */}
+      <h1 className="max-w-4xl">
         {words.map((word, i) => (
-          <span
-            key={word}
-            className="inline-block overflow-hidden mr-[0.25em] last:mr-0"
-          >
+          <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.2em] last:mr-0">
             <span
-              className="inline-block transition-[opacity,transform] duration-[600ms]"
+              className="inline-block font-[family-name:var(--font-serif)] text-5xl italic sm:text-7xl lg:text-8xl tracking-tight transition-[opacity,transform] duration-[800ms]"
               style={{
-                transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-                transitionDelay: `${i * 80}ms`,
+                transitionTimingFunction: "var(--easing)",
+                transitionDelay: `${800 + i * 100}ms`,
                 opacity: mounted ? 1 : 0,
-                transform: mounted ? "translateY(0)" : "translateY(20px)",
+                transform: mounted ? "translateY(0)" : "translateY(100%)",
               }}
             >
               {word}
@@ -79,48 +83,31 @@ export function AnimatedHero({
         ))}
       </h1>
 
-      {/* Title */}
+      {/* Descriptor */}
       <p
-        className="mt-2 text-lg text-[#555] transition-[opacity,transform] duration-[600ms]"
+        className="mt-8 max-w-xl text-[var(--text-muted)] leading-relaxed transition-[opacity,transform] duration-[800ms]"
         style={{
-          transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-          transitionDelay: `${totalNameDuration}ms`,
+          transitionTimingFunction: "var(--easing)",
+          transitionDelay: `${800 + words.length * 100 + 200}ms`,
           opacity: mounted ? 1 : 0,
           transform: mounted ? "translateY(0)" : "translateY(20px)",
         }}
       >
-        {title}
+        {description}
       </p>
 
-      {/* Mission */}
-      <p
-        className="mt-4 max-w-xl text-[#555] leading-relaxed transition-[opacity,transform] duration-[600ms]"
-        style={{
-          transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-          transitionDelay: `${totalNameDuration + 100}ms`,
-          opacity: mounted ? 1 : 0,
-          transform: mounted ? "translateY(0)" : "translateY(20px)",
-        }}
-      >
-        {mission}
-      </p>
-
-      {/* CTA */}
+      {/* Scroll indicator */}
       <div
-        className="mt-6 transition-[opacity,transform] duration-[600ms]"
+        className="absolute bottom-10 flex flex-col items-center gap-2 transition-opacity duration-1000"
         style={{
-          transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-          transitionDelay: `${totalNameDuration + 200}ms`,
           opacity: mounted ? 1 : 0,
-          transform: mounted ? "translateY(0)" : "translateY(20px)",
+          transitionDelay: `${800 + words.length * 100 + 400}ms`,
         }}
       >
-        <MagneticButton
-          href="#work"
-          className="btn-sweep rounded-md bg-[#111] px-5 py-2.5 text-sm font-medium text-white"
-        >
-          See the work
-        </MagneticButton>
+        <span className="label-mono text-[10px]">Scroll</span>
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1" className="animate-bounce text-[var(--text-muted)]">
+          <path d="M2 4l4 4 4-4" />
+        </svg>
       </div>
     </section>
   );
