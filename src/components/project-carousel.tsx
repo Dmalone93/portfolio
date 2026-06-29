@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Project } from "@/data/projects";
@@ -31,6 +31,32 @@ export function ProjectCarousel({
       left: direction === "left" ? -cardWidth - 24 : cardWidth + 24,
       behavior: "smooth",
     });
+  }, []);
+
+  // Staggered card entrance via IntersectionObserver
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = container.querySelectorAll<HTMLElement>("[data-card]");
+            cards.forEach((card, i) => {
+              setTimeout(() => {
+                card.classList.add("card-revealed");
+              }, i * 150);
+            });
+            observer.unobserve(container);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -88,6 +114,7 @@ function CarouselCard({ project }: { project: Project }) {
     <Link
       href={`/work/${project.slug}`}
       data-card
+      data-cursor="view"
       className="group flex-none w-[85vw] sm:w-[500px] snap-start"
     >
       {/* Image area */}

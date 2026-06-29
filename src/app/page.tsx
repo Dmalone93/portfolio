@@ -2,6 +2,7 @@ import { getProfile, getProjects } from "@/lib/site-content";
 import { AnimatedHero } from "@/components/animated-hero";
 import { ProjectCarousel } from "@/components/project-carousel";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import { Marquee } from "@/components/marquee";
 
 export default async function Home() {
   const [profile, projects] = await Promise.all([getProfile(), getProjects()]);
@@ -27,6 +28,8 @@ export default async function Home() {
         description={heroDescription}
       />
 
+      <Marquee />
+
       {/* Personal Projects */}
       <section id="work" className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
@@ -37,6 +40,8 @@ export default async function Home() {
         </ScrollReveal>
       </section>
 
+      <Marquee />
+
       {/* Work */}
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <ScrollReveal>
@@ -46,6 +51,8 @@ export default async function Home() {
           />
         </ScrollReveal>
       </section>
+
+      <Marquee />
 
       {/* Private Work */}
       <section className="mx-auto max-w-6xl px-6 pb-24">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ScrambleText } from "@/components/scramble-text";
 
 const links = [
   { href: "/#work", label: "Work" },
@@ -44,7 +45,7 @@ export function MenuOverlay({
             onClick={onClose}
             className="text-4xl sm:text-5xl font-[family-name:var(--font-geist)] text-[var(--text)] hover:text-[var(--text-muted)] transition-colors"
           >
-            {link.label}
+            <ScrambleText text={link.label} />
           </Link>
         ))}
       </nav>
