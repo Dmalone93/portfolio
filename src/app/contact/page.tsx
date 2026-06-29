@@ -8,7 +8,7 @@ export default async function ContactPage() {
     <div className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       <ScrollReveal>
         <p className="label-mono">CONTACT</p>
-        <h1 className="mt-3 font-[family-name:var(--font-serif)] text-3xl italic sm:text-5xl tracking-tight">
+        <h1 className="mt-3 font-[family-name:var(--font-geist)] text-3xl sm:text-5xl tracking-tight">
           Get in touch
         </h1>
         <p className="mt-6 max-w-lg text-[var(--text-muted)] leading-relaxed">

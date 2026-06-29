@@ -6,7 +6,7 @@ export function ResumePdfAction({ pdfUrl, fileName }: { pdfUrl: string; fileName
       <a
         href={pdfUrl}
         download={fileName || "resume.pdf"}
-        className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-[var(--bg)] transition-colors hover:bg-[var(--text-muted)]"
+        className="inline-flex items-center gap-2 rounded-md bg-[#111] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#333]"
       >
         Download PDF
       </a>

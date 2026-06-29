@@ -56,7 +56,7 @@ export function AnimatedHero({
           transitionTimingFunction: "var(--easing)",
         }}
       >
-        <svg viewBox="0 0 64 64" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5" className="animate-[spin_20s_linear_infinite]">
+        <svg viewBox="0 0 64 64" fill="none" stroke="rgba(0,0,0,0.15)" strokeWidth="0.5" className="animate-[spin_20s_linear_infinite]">
           <circle cx="32" cy="32" r="28" />
           <line x1="32" y1="0" x2="32" y2="64" />
           <line x1="0" y1="32" x2="64" y2="32" />
@@ -69,7 +69,7 @@ export function AnimatedHero({
         {words.map((word, i) => (
           <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.2em] last:mr-0">
             <span
-              className="inline-block font-[family-name:var(--font-serif)] text-5xl italic sm:text-7xl lg:text-8xl tracking-tight transition-[opacity,transform] duration-[800ms]"
+              className="inline-block font-[family-name:var(--font-geist)] text-5xl sm:text-7xl lg:text-8xl tracking-tight transition-[opacity,transform] duration-[800ms]"
               style={{
                 transitionTimingFunction: "var(--easing)",
                 transitionDelay: `${800 + i * 100}ms`,

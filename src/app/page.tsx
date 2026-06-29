@@ -18,7 +18,7 @@ export default async function Home() {
       {/* Project showcase */}
       <section id="work" className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
-          <h2 className="text-center font-[family-name:var(--font-serif)] text-3xl italic sm:text-4xl">
+          <h2 className="text-center font-[family-name:var(--font-geist)] text-3xl sm:text-4xl">
             Selected work &amp; explorations
           </h2>
         </ScrollReveal>

@@ -44,7 +44,7 @@ export default async function CaseStudyPage({
       <ScrollReveal className="mt-10">
         <header className="max-w-3xl">
           <p className="label-mono">{project.company}{project.eyebrow ? ` — ${project.eyebrow}` : ""}</p>
-          <h1 className="mt-3 font-[family-name:var(--font-serif)] text-3xl sm:text-5xl tracking-tight">
+          <h1 className="mt-3 font-[family-name:var(--font-geist)] text-3xl sm:text-5xl tracking-tight">
             {project.title}
           </h1>
         </header>
@@ -85,7 +85,7 @@ export default async function CaseStudyPage({
           <ScrollReveal>
             <section>
               <p className="label-mono">THE PROBLEM</p>
-              <h2 className="mt-2 font-[family-name:var(--font-serif)] text-2xl">The problem</h2>
+              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">The problem</h2>
               <ul className="mt-4 space-y-3">
                 {project.challenge.map((item) => (
                   <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
@@ -100,7 +100,7 @@ export default async function CaseStudyPage({
           <ScrollReveal>
             <section>
               <p className="label-mono">HOW I APPROACHED IT</p>
-              <h2 className="mt-2 font-[family-name:var(--font-serif)] text-2xl">How I approached it</h2>
+              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">How I approached it</h2>
               <ol className="mt-6 space-y-8">
                 {project.processSteps.map((step, i) => (
                   <ScrollReveal key={step.key} delay={i * 80}>
@@ -130,7 +130,7 @@ export default async function CaseStudyPage({
           <ScrollReveal>
             <section>
               <p className="label-mono">WHAT I CHANGED</p>
-              <h2 className="mt-2 font-[family-name:var(--font-serif)] text-2xl">What I changed</h2>
+              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">What I changed</h2>
               <ul className="mt-4 space-y-3">
                 {project.whatChanged.map((item) => (
                   <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
@@ -176,7 +176,7 @@ export default async function CaseStudyPage({
             {project.narrativeSections.map((section) => (
               <ScrollReveal key={section.key}>
                 <section>
-                  <h2 className="font-[family-name:var(--font-serif)] text-2xl">{section.title}</h2>
+                  <h2 className="font-[family-name:var(--font-geist)] text-2xl">{section.title}</h2>
                   {section.paragraphs.map((p) => (
                     <p key={p} className="mt-3 text-[var(--text-muted)] leading-relaxed">{p}</p>
                   ))}
@@ -212,7 +212,7 @@ export default async function CaseStudyPage({
           <ScrollReveal>
             <section>
               <p className="label-mono">WHAT IT DID</p>
-              <h2 className="mt-2 font-[family-name:var(--font-serif)] text-2xl">What it did</h2>
+              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">What it did</h2>
               <ul className="mt-4 space-y-3">
                 {project.impact.map((item) => (
                   <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>

@@ -11,7 +11,7 @@ export default async function ResumePage() {
       <ScrollReveal>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="font-[family-name:var(--font-serif)] text-3xl sm:text-4xl tracking-tight">{profile.name}</h1>
+            <h1 className="font-[family-name:var(--font-geist)] text-3xl sm:text-4xl tracking-tight">{profile.name}</h1>
             <p className="mt-1 label-mono">{resume.headline}</p>
           </div>
           {resume.pdfUrl && <ResumePdfAction pdfUrl={resume.pdfUrl} fileName={resume.pdfFileName} />}
@@ -37,7 +37,7 @@ export default async function ResumePage() {
             {resume.experience.map((item) => (
               <div key={`${item.company}-${item.role}-${item.timeframe}`}>
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-[family-name:var(--font-serif)] text-xl">{item.role}</h3>
+                  <h3 className="font-[family-name:var(--font-geist)] text-xl">{item.role}</h3>
                   <span className="label-mono text-[10px]">{item.timeframe}</span>
                 </div>
                 <p className="mt-1 text-sm text-[var(--text-muted)]">

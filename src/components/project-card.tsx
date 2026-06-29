@@ -18,7 +18,7 @@ export function ProjectCard({ project }: { project: Project }) {
       {/* Info row */}
       <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <h3 className="font-[family-name:var(--font-serif)] text-2xl text-[var(--text)]">
+          <h3 className="font-[family-name:var(--font-geist)] text-2xl text-[var(--text)]">
             {project.title}
           </h3>
           <p className="mt-1 max-w-md text-sm text-[var(--text-muted)] leading-relaxed">

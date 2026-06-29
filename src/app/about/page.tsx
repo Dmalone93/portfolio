@@ -13,7 +13,7 @@ export default async function AboutPage() {
         <div className="flex-1 lg:max-w-[60%]">
           <ScrollReveal>
             <p className="label-mono">ABOUT</p>
-            <h1 className="mt-3 font-[family-name:var(--font-serif)] text-3xl italic sm:text-5xl tracking-tight">
+            <h1 className="mt-3 font-[family-name:var(--font-geist)] text-3xl sm:text-5xl tracking-tight">
               A bit about me
             </h1>
           </ScrollReveal>

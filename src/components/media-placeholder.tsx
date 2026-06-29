@@ -9,7 +9,7 @@ export function MediaPlaceholder({
 }) {
   return (
     <div
-      className={`inset-frame relative overflow-hidden rounded-lg bg-[#1a1a1a] ${className}`}
+      className={`inset-frame relative overflow-hidden rounded-lg bg-[#e8e8e8] ${className}`}
       style={{ aspectRatio }}
     >
       <div className="absolute inset-0 flex items-center justify-center">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Playfair_Display, Martian_Mono } from "next/font/google";
+import { Geist, Martian_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
@@ -10,13 +10,6 @@ import "./globals.css";
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
 });
 
 const martianMono = Martian_Mono({
@@ -46,7 +39,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${playfair.variable} ${martianMono.variable} antialiased`}
+      className={`${geist.variable} ${martianMono.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col bg-[var(--bg)] text-[var(--text)] font-[family-name:var(--font-geist)]">
         <Preloader />

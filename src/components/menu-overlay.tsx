@@ -42,7 +42,7 @@ export function MenuOverlay({
             key={link.href}
             href={link.href}
             onClick={onClose}
-            className="text-4xl sm:text-5xl font-[family-name:var(--font-serif)] italic text-[var(--text)] hover:text-[var(--text-muted)] transition-colors"
+            className="text-4xl sm:text-5xl font-[family-name:var(--font-geist)] text-[var(--text)] hover:text-[var(--text-muted)] transition-colors"
           >
             {link.label}
           </Link>

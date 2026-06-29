@@ -7,14 +7,14 @@ html {
 
 /* Color tokens */
 :root {
-  --bg: #0C0C0C;
-  --bg-elevated: #141414;
-  --bg-preloader: #d4d4d4;
-  --text: #ffffff;
-  --text-muted: #888888;
-  --text-dim: #555555;
-  --border: #222222;
-  --border-light: #333333;
+  --bg: #fafafa;
+  --bg-elevated: #f0f0f0;
+  --bg-preloader: #fafafa;
+  --text: #111111;
+  --text-muted: #666666;
+  --text-dim: #999999;
+  --border: #e5e5e5;
+  --border-light: #d4d4d4;
   --easing: cubic-bezier(0.25, 0, 0, 1);
 }
 
@@ -95,12 +95,12 @@ html {
   content: "";
   position: absolute;
   inset: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   pointer-events: none;
   transition: border-color 300ms var(--easing);
 }
 
 .inset-frame:hover::after {
-  border-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(0, 0, 0, 0.2);
 }
