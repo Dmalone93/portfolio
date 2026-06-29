@@ -19,13 +19,6 @@ export function Nav({ name }: { name: string }) {
           </Link>
 
           <div className="flex items-center gap-6">
-            <Link
-              href="/contact"
-              className="cta-underline hidden sm:inline-flex"
-            >
-              Start a project <span aria-hidden="true">&rarr;</span>
-            </Link>
-
             <button
               type="button"
               onClick={() => setMenuOpen(true)}

@@ -188,20 +188,6 @@ export function AnimatedHero({
             {description}
           </p>
 
-          {/* CTA */}
-          <div
-            className="mt-8 transition-[opacity,transform] duration-[800ms]"
-            style={{
-              transitionTimingFunction: "var(--easing)",
-              transitionDelay: `${800 + words.length * 100 + 200}ms`,
-              opacity: mounted ? 1 : 0,
-              transform: mounted ? "translateY(0)" : "translateY(20px)",
-            }}
-          >
-            <a href="#work" className="cta-underline w-fit">
-              Start a project <span aria-hidden="true">&rarr;</span>
-            </a>
-          </div>
         </div>
       </div>
 
