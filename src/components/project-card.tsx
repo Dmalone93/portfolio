@@ -27,7 +27,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <Link
           href={`/work/${project.slug}`}
-          className="cta-underline shrink-0"
+          className="cta-underline w-fit shrink-0"
         >
           Explore project <span aria-hidden="true">&rarr;</span>
         </Link>
