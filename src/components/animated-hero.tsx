@@ -41,7 +41,7 @@ export function AnimatedHero({
     window.addEventListener("resize", resize);
 
     // Nodes
-    const nodeCount = 60;
+    const nodeCount = 80;
     const nodes: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
     const w = () => canvas!.offsetWidth;
     const h = () => canvas!.offsetHeight;
@@ -52,7 +52,7 @@ export function AnimatedHero({
         y: Math.random() * h(),
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 1.5 + 0.5,
+        r: Math.random() * 2 + 1,
       });
     }
 
@@ -80,9 +80,9 @@ export function AnimatedHero({
       }
 
       // Draw connections
-      const connectionDist = 120;
-      ctx!.strokeStyle = "rgba(0, 0, 0, 0.04)";
-      ctx!.lineWidth = 0.5;
+      const connectionDist = 150;
+      ctx!.strokeStyle = "rgba(0, 0, 0, 0.15)";
+      ctx!.lineWidth = 0.8;
 
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -90,7 +90,7 @@ export function AnimatedHero({
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < connectionDist) {
-            const alpha = (1 - dist / connectionDist) * 0.06;
+            const alpha = (1 - dist / connectionDist) * 0.2;
             ctx!.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
             ctx!.beginPath();
             ctx!.moveTo(nodes[i].x, nodes[i].y);
@@ -102,7 +102,7 @@ export function AnimatedHero({
 
       // Draw nodes
       for (const node of nodes) {
-        ctx!.fillStyle = "rgba(0, 0, 0, 0.08)";
+        ctx!.fillStyle = "rgba(0, 0, 0, 0.25)";
         ctx!.beginPath();
         ctx!.arc(node.x, node.y, node.r, 0, Math.PI * 2);
         ctx!.fill();
