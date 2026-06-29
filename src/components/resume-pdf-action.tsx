@@ -6,7 +6,7 @@ export function ResumePdfAction({ pdfUrl, fileName }: { pdfUrl: string; fileName
       <a
         href={pdfUrl}
         download={fileName || "resume.pdf"}
-        className="inline-flex items-center gap-2 rounded-md bg-[#111] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#333]"
+        className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-[var(--bg)] transition-colors hover:bg-[var(--text-muted)]"
       >
         Download PDF
       </a>
@@ -19,7 +19,7 @@ export function ResumePdfAction({ pdfUrl, fileName }: { pdfUrl: string; fileName
             navigator.clipboard.writeText(pdfUrl);
           }
         }}
-        className="inline-flex items-center gap-2 rounded-md border border-[#e5e5e5] px-4 py-2 text-sm font-medium text-[#555] transition-colors hover:bg-[#f5f5f5]"
+        className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-4 py-2 text-sm font-medium text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-elevated)]"
       >
         Share
       </button>

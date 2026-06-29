@@ -8,54 +8,52 @@ export default async function ResumePage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
-      {/* Header */}
       <ScrollReveal>
-        <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">{profile.name}</h1>
-            <p className="mt-1 text-[#555]">{resume.headline}</p>
+            <h1 className="font-[family-name:var(--font-serif)] text-3xl sm:text-4xl tracking-tight">{profile.name}</h1>
+            <p className="mt-1 label-mono">{resume.headline}</p>
           </div>
           {resume.pdfUrl && <ResumePdfAction pdfUrl={resume.pdfUrl} fileName={resume.pdfFileName} />}
         </div>
 
-        {/* Contact */}
-        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[#555]">
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--text-muted)]">
           {resume.contactLines.map((line) => (
             <span key={line}>{line}</span>
           ))}
         </div>
 
-        {/* Summary */}
         <section className="mt-8">
-          <p className="text-[#555] leading-relaxed">{renderResumeInlineText(resume.professionalSummary)}</p>
+          <p className="text-[var(--text-muted)] leading-relaxed">{renderResumeInlineText(resume.professionalSummary)}</p>
         </section>
       </ScrollReveal>
 
-      {/* Experience */}
+      <div className="mt-12 border-t border-[var(--border)]" />
+
       <ScrollReveal>
-        <section className="mt-10">
-          <h2 className="text-lg font-semibold">Experience</h2>
-          <div className="mt-4 space-y-8">
+        <section className="mt-12">
+          <p className="label-mono">EXPERIENCE</p>
+          <div className="mt-6 space-y-10">
             {resume.experience.map((item) => (
               <div key={`${item.company}-${item.role}-${item.timeframe}`}>
                 <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between">
-                  <h3 className="font-medium">{item.role}</h3>
-                  <span className="text-sm text-[#888]">{item.timeframe}</span>
+                  <h3 className="font-[family-name:var(--font-serif)] text-xl">{item.role}</h3>
+                  <span className="label-mono text-[10px]">{item.timeframe}</span>
                 </div>
-                <p className="text-sm text-[#555]">
+                <p className="mt-1 text-sm text-[var(--text-muted)]">
                   {item.company}
                   {item.website && (
                     <>
                       {" — "}
-                      <a href={item.website} target="_blank" rel="noreferrer" className="text-[#2563eb] hover:underline">
+                      <a href={item.website} target="_blank" rel="noreferrer" className="cta-underline text-[11px] inline">
                         {item.website}
                       </a>
                     </>
                   )}
                 </p>
-                <ul className="mt-2 space-y-1.5">
+                <ul className="mt-3 space-y-2">
                   {item.bullets.map((bullet) => (
-                    <li key={bullet} className="text-sm text-[#555] leading-relaxed">
+                    <li key={bullet} className="text-sm text-[var(--text-muted)] leading-relaxed">
                       {renderResumeInlineText(bullet)}
                     </li>
                   ))}
@@ -66,28 +64,30 @@ export default async function ResumePage() {
         </section>
       </ScrollReveal>
 
-      {/* Education */}
+      <div className="mt-12 border-t border-[var(--border)]" />
+
       <ScrollReveal>
-        <section className="mt-10">
-          <h2 className="text-lg font-semibold">Education</h2>
+        <section className="mt-12">
+          <p className="label-mono">EDUCATION</p>
           <div className="mt-4 space-y-2">
             {resume.education.map((line) => (
-              <p key={line} className="text-sm text-[#555]">{renderResumeInlineText(line)}</p>
+              <p key={line} className="text-sm text-[var(--text-muted)]">{renderResumeInlineText(line)}</p>
             ))}
           </div>
         </section>
       </ScrollReveal>
 
-      {/* Skills */}
+      <div className="mt-12 border-t border-[var(--border)]" />
+
       <ScrollReveal>
-        <section className="mt-10">
-          <h2 className="text-lg font-semibold">Skills</h2>
+        <section className="mt-12">
+          <p className="label-mono">SKILLS</p>
           <div className="mt-4 grid gap-6 sm:grid-cols-2">
             {resume.skillSections.map((section) => (
               <div key={section.heading}>
-                <h3 className="text-sm font-medium text-[#888]">{section.heading}</h3>
+                <h3 className="label-mono text-[10px] text-[var(--text-dim)]">{section.heading}</h3>
                 {section.lines.map((line) => (
-                  <p key={line} className="mt-1 text-sm text-[#555]">{renderResumeInlineText(line)}</p>
+                  <p key={line} className="mt-1 text-sm text-[var(--text-muted)]">{renderResumeInlineText(line)}</p>
                 ))}
               </div>
             ))}
