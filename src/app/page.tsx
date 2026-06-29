@@ -15,12 +15,14 @@ export default async function Home() {
         description={heroDescription}
       />
 
-      {/* Project showcase */}
-      <section id="work" className="mx-auto max-w-6xl px-6 py-24">
+      {/* Seamless transition — no hard section break */}
+      <section id="work" className="relative mx-auto max-w-6xl px-6 -mt-[10vh] pb-24">
         <ScrollReveal>
-          <h2 className="text-center font-[family-name:var(--font-geist)] text-3xl sm:text-4xl">
-            Selected work &amp; explorations
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="font-[family-name:var(--font-geist)] text-3xl sm:text-4xl">
+              Selected work &amp; explorations
+            </h2>
+          </div>
         </ScrollReveal>
 
         <div className="mt-20 space-y-24">
