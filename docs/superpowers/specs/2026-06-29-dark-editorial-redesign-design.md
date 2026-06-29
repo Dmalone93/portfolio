@@ -13,7 +13,7 @@
 - 3-font typography stack (editorial serif, grotesque sans, monospace)
 - Redesigned navigation (logo left, CTA + menu right, dark theme)
 - Full-viewport hero with bold serif headline, staggered word reveal, 3D/animated motif
-- Asymmetric project grid with image/video placeholders
+- Full-width stacked project cards with large media areas and inset border frames (Trionn card style)
 - Media placeholders on all pages (hero, case studies, about)
 - Crosshair corner motifs as decorative elements
 - Updated motion system (vibration/glitch hovers, line-by-line text reveals, cubic-bezier(0.25, 0, 0, 1))
@@ -144,16 +144,18 @@ I come from fine art photography, so I think about
 composition and clarity in everything I make.
 ```
 
-### Project showcase
-- Section label: "SELECTED WORK" in monospace, uppercase, spaced
-- Asymmetric grid: alternating rows
-  - Odd rows: large card left (60%), small card right (40%)
-  - Even rows: small card left (40%), large card right (60%)
+### Project showcase (Trionn card style)
+- Section heading: "Selected work & explorations" in editorial serif, centered
+- Full-width stacked cards, one project per row, generous vertical spacing (80-100px between cards)
 - Each card:
-  - Media placeholder area (dashed border `#333`, rounded corners, aspect-ratio 16/10)
-  - Below: project title in editorial serif (24px), company in monospace (12px, uppercase, muted)
-  - Hover: placeholder border brightens, card lifts, title shifts color
-  - Corner crosshair motif on the media placeholder (top-left `×`)
+  - Large media placeholder area (aspect-ratio 16/10, solid `#1a1a1a` background, rounded-lg)
+  - Inset border frame: a thin white/light stroke rectangle (~1px, rgba(255,255,255,0.15)) inset ~20px from the media area edges, overlaid on top
+  - Below media: row with title + description left, CTA right (on desktop)
+    - Title in editorial serif (24-28px)
+    - Description: 1-2 lines in sans-serif, muted text
+    - CTA: "EXPLORE PROJECT →" in monospace, uppercase, spaced, with underline that grows from left on hover
+  - On mobile: title, description, CTA stack vertically
+  - Hover: media area scales subtly (1.02), inset frame border brightens
 
 ---
 
