@@ -50,6 +50,62 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "cardconomy",
+    title: "Cardconomy",
+    company: "PERSONAL PROJECT",
+    sortOrder: 0,
+    portfolioVisible: true,
+    eyebrow: "UK Trading Card Marketplace",
+    summary:
+      "Designed a UK-native trading card marketplace connecting buyers, sellers, and local game shops — 50+ screens, interactive prototype, and the lowest fee model in TCG.",
+    stats: [
+      { key: "screens", value: "50+", label: "Screens designed" },
+      { key: "fee", value: "6%", label: "Total seller fee", detail: "Lowest in UK TCG" },
+      { key: "timeline", value: "3", label: "Week sprint" },
+      { key: "tcgs", value: "5", label: "TCGs supported" },
+    ],
+    challenge: [
+      "UK trading card collectors have no home. eBay charges 12–15% fees with zero community features. Cardmarket is EU-focused with post-Brexit friction — customs delays, euro-only pricing, and prohibitive shipping on low-value trades.",
+      "TCGplayer doesn't operate in the UK at all. The closure of GAME's 300 standalone stores in 2026 left a physical retail gap too.",
+      "Three communities — collectors, individual sellers, and local game shops — are forced onto platforms that weren't built for any of them.",
+    ],
+    processSteps: [
+      {
+        key: "research",
+        title: "Competitive audit",
+        text: "Mapped fee structures, feature gaps, and UX pain points across eBay UK, Cardmarket, TCGplayer, Whatnot, and CardNexus. Identified the core differentiator: no platform bridges buyers, sellers, and local shops in one place.",
+      },
+      {
+        key: "ia",
+        title: "Information architecture",
+        text: "Designed three distinct dashboard experiences (buyer/seller/shop) within one app, each with purpose-built tools. Created multi-seller product pages — one card, every seller's price and condition compared at a glance.",
+      },
+      {
+        key: "interaction",
+        title: "Interaction design",
+        text: "Pack-rip loading animation, game landing pages with visual set browsers, persistent navigation architecture, and a scan-to-sell flow for card identification and instant pricing.",
+      },
+      {
+        key: "visual",
+        title: "Visual design",
+        text: "Evolved the brand through multiple iterations: from colour-heavy to a refined B&W palette with Inter for text and Space Grotesk for prices. Typography audit — stripped extra-bold weights across the entire UI in favour of bold for a cleaner feel.",
+      },
+    ],
+    whatChanged: [
+      "Multi-seller product pages over individual listings: buyers see every option for a card on one screen — price, condition, seller rating, shipping.",
+      "Trade-as-a-first-class-feature: card trading is built into the product page, not buried in a separate section.",
+      "Local game shop integration: shops get a digital storefront, bulk card intake tools, and buylist management — turning them from competitors into ecosystem partners.",
+      "Fee transparency as a feature: an interactive fee comparison slider (drag from £1–500, see live per-platform breakdowns) turned a business model decision into a persuasion tool.",
+    ],
+    impact: [
+      "50+ screen walkable prototype with realistic mock data (64 card listings across 5 TCGs), working navigation, cart, watchlist, and state persistence.",
+      "Designed for trade show demos and investor conversations — every user flow is end-to-end interactive.",
+    ],
+    liveUrl: "https://cardconomyy.vercel.app",
+    embedMode: "external-only",
+    prototypeViewport: "desktop",
+  },
+  {
     slug: "gallery-design-bedrooms",
     title: "Gallery Design Bedrooms",
     company: "CONTRACT",
