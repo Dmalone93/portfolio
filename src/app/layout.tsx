@@ -3,6 +3,7 @@ import { Geist, Playfair_Display, Martian_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { CustomCursor } from "@/components/custom-cursor";
+import { Preloader } from "@/components/preloader";
 import { getProfile } from "@/lib/site-content";
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default async function RootLayout({
       className={`${geist.variable} ${playfair.variable} ${martianMono.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col bg-[var(--bg)] text-[var(--text)] font-[family-name:var(--font-geist)]">
+        <Preloader />
         <CustomCursor />
         <Nav name={profile.name} />
         <main className="flex-1">{children}</main>
