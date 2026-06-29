@@ -21,7 +21,7 @@ export function PrototypeEmbed({
         href={url}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-2 rounded-md border border-[#e5e5e5] px-4 py-2.5 text-sm font-medium text-[#2563eb] transition-colors hover:bg-[#f5f5f5]"
+        className="inline-flex items-center gap-2 rounded-md border border-[var(--border)] px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-colors hover:bg-[var(--bg-elevated)]"
       >
         View live prototype
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -35,9 +35,9 @@ export function PrototypeEmbed({
   const aspectClass = isMobile ? "aspect-[9/16] max-w-sm" : "aspect-video w-full";
 
   return (
-    <div className={`relative mx-auto overflow-hidden rounded-lg border border-[#e5e5e5] bg-[#fafafa] ${aspectClass}`}>
+    <div className={`relative mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] ${aspectClass}`}>
       {!loaded && (
-        <div className="absolute inset-0 flex items-center justify-center text-sm text-[#555]">
+        <div className="absolute inset-0 flex items-center justify-center text-sm text-[var(--text-muted)]">
           Loading prototype…
         </div>
       )}
