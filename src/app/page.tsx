@@ -1,7 +1,10 @@
 import { getProfile, getProjects } from "@/lib/site-content";
 import { AnimatedHero } from "@/components/animated-hero";
+import { AboutStrip } from "@/components/about-strip";
 import { FeaturedProjectCard } from "@/components/featured-project-card";
+import { SkillsGrid } from "@/components/skills-grid";
 import { ProjectCarousel } from "@/components/project-carousel";
+import { ClosingStatement } from "@/components/closing-statement";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default async function Home() {
@@ -28,8 +31,10 @@ export default async function Home() {
         description={heroDescription}
       />
 
+      <AboutStrip />
+
       {/* Personal Projects — full-width stacked */}
-      <section id="work" className="mx-auto max-w-6xl px-6 pt-32 pb-16">
+      <section id="work" className="mx-auto max-w-6xl px-6 pt-8 pb-16">
         <ScrollReveal>
           <p className="label-mono">PERSONAL PROJECTS</p>
           <h2 className="mt-3 font-[family-name:var(--font-geist)] text-3xl sm:text-4xl">
@@ -46,6 +51,8 @@ export default async function Home() {
         </div>
       </section>
 
+      <SkillsGrid />
+
       {/* Work — carousel */}
       <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
@@ -57,7 +64,7 @@ export default async function Home() {
       </section>
 
       {/* Private Work — carousel */}
-      <section className="mx-auto max-w-6xl px-6 pb-32">
+      <section className="mx-auto max-w-6xl px-6 pb-24">
         <ScrollReveal>
           <ProjectCarousel
             title="Private work"
@@ -65,6 +72,8 @@ export default async function Home() {
           />
         </ScrollReveal>
       </section>
+
+      <ClosingStatement />
     </div>
   );
 }
