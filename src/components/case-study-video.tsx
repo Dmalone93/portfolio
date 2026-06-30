@@ -25,7 +25,7 @@ export function CaseStudyVideo({
   };
 
   return (
-    <div className="relative overflow-hidden rounded-lg bg-[#e8e8e8]">
+    <div className="relative overflow-hidden rounded-lg bg-[#ebebeb]">
       {label && (
         <p className="label-mono absolute top-4 left-4 z-10">{label}</p>
       )}

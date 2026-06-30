@@ -7,14 +7,14 @@ html {
 
 /* Color tokens */
 :root {
-  --bg: #fafafa;
-  --bg-elevated: #f0f0f0;
-  --bg-preloader: #fafafa;
-  --text: #111111;
-  --text-muted: #666666;
-  --text-dim: #999999;
-  --border: #e5e5e5;
-  --border-light: #d4d4d4;
+  --bg: #ffffff;
+  --bg-elevated: #f7f7f7;
+  --bg-preloader: #f5f5f5;
+  --text: #0a0a0a;
+  --text-muted: #555555;
+  --text-dim: #888888;
+  --border: #e0e0e0;
+  --border-light: #cccccc;
   --easing: cubic-bezier(0.25, 0, 0, 1);
 }
 

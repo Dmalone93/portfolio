@@ -119,7 +119,7 @@ function CarouselCard({ project }: { project: Project }) {
       className="group flex-none w-[85vw] sm:w-[500px] snap-start"
     >
       {/* Media area */}
-      <div className="inset-frame relative overflow-hidden rounded-lg bg-[#e8e8e8] aspect-[16/10]">
+      <div className="inset-frame relative overflow-hidden rounded-lg bg-[#ebebeb] aspect-[16/10]">
         {video ? (
           <video
             src={video}
