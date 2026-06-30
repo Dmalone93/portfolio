@@ -92,91 +92,93 @@ export default async function CaseStudyPage({
       )}
 
       {/* Body content */}
-      <div className="mx-auto mt-16 max-w-3xl space-y-16">
+      <div className="mx-auto mt-16 max-w-6xl space-y-20">
         {/* Summary */}
         {project.summary && (
           <ScrollReveal>
-            <p className="text-lg text-[var(--text-muted)] leading-relaxed">{project.summary}</p>
+            <p className="max-w-3xl text-lg text-[var(--text-muted)] leading-relaxed">{project.summary}</p>
           </ScrollReveal>
         )}
 
-        {/* Media after summary */}
-        <ScrollReveal>
-          {videos?.afterSummary ? (
-            <CaseStudyVideo src={videos.afterSummary.src} label={videos.afterSummary.label} />
-          ) : (
-            <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
-          )}
-        </ScrollReveal>
-
-        {/* Challenge */}
+        {/* Challenge + video side by side */}
         {project.challenge && project.challenge.length > 0 && (
           <ScrollReveal>
-            <section>
-              <p className="label-mono">THE PROBLEM</p>
-              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">The problem</h2>
-              <ul className="mt-4 space-y-3">
-                {project.challenge.map((item) => (
-                  <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
-                ))}
-              </ul>
-            </section>
+            <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+              <section className="flex-1">
+                <p className="label-mono">THE PROBLEM</p>
+                <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">The problem</h2>
+                <ul className="mt-4 space-y-3">
+                  {project.challenge.map((item) => (
+                    <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
+                  ))}
+                </ul>
+              </section>
+              <div className="lg:w-[45%] lg:shrink-0">
+                {videos?.afterSummary ? (
+                  <CaseStudyVideo src={videos.afterSummary.src} label={videos.afterSummary.label} />
+                ) : (
+                  <MediaPlaceholder label="Screenshot / video" aspectRatio="9/16" />
+                )}
+              </div>
+            </div>
           </ScrollReveal>
         )}
 
-        {/* Process */}
+        {/* Process + video side by side */}
         {project.processSteps && project.processSteps.length > 0 && (
           <ScrollReveal>
-            <section>
-              <p className="label-mono">HOW I APPROACHED IT</p>
-              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">How I approached it</h2>
-              <ol className="mt-6 space-y-8">
-                {project.processSteps.map((step, i) => (
-                  <ScrollReveal key={step.key} delay={i * 80}>
-                    <li className="flex gap-5">
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-[family-name:var(--font-mono)] text-xs text-[var(--text-muted)]">
-                        {i + 1}
-                      </span>
-                      <div>
-                        <h3 className="font-medium">{step.title}</h3>
-                        <p className="mt-1 text-sm text-[var(--text-muted)] leading-relaxed">{step.text}</p>
-                      </div>
-                    </li>
-                  </ScrollReveal>
-                ))}
-              </ol>
-            </section>
+            <div className="flex flex-col gap-10 lg:flex-row-reverse lg:gap-16">
+              <section className="flex-1">
+                <p className="label-mono">HOW I APPROACHED IT</p>
+                <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">How I approached it</h2>
+                <ol className="mt-6 space-y-8">
+                  {project.processSteps.map((step, i) => (
+                    <ScrollReveal key={step.key} delay={i * 80}>
+                      <li className="flex gap-5">
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--border)] font-[family-name:var(--font-mono)] text-xs text-[var(--text-muted)]">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <h3 className="font-medium">{step.title}</h3>
+                          <p className="mt-1 text-sm text-[var(--text-muted)] leading-relaxed">{step.text}</p>
+                        </div>
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ol>
+              </section>
+              <div className="lg:w-[45%] lg:shrink-0">
+                {videos?.afterProcess ? (
+                  <CaseStudyVideo src={videos.afterProcess.src} label={videos.afterProcess.label} />
+                ) : (
+                  <MediaPlaceholder label="Screenshot / video" aspectRatio="9/16" />
+                )}
+              </div>
+            </div>
           </ScrollReveal>
         )}
 
-        {/* Media after process */}
-        <ScrollReveal>
-          {videos?.afterProcess ? (
-            <CaseStudyVideo src={videos.afterProcess.src} label={videos.afterProcess.label} />
-          ) : (
-            <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
-          )}
-        </ScrollReveal>
-
-        {/* What Changed */}
+        {/* What Changed + video side by side */}
         {project.whatChanged && project.whatChanged.length > 0 && (
           <ScrollReveal>
-            <section>
-              <p className="label-mono">WHAT I CHANGED</p>
-              <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">What I changed</h2>
-              <ul className="mt-4 space-y-3">
-                {project.whatChanged.map((item) => (
-                  <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
-                ))}
-              </ul>
-            </section>
-          </ScrollReveal>
-        )}
-
-        {/* Media after what changed */}
-        {videos?.afterWhatChanged && (
-          <ScrollReveal>
-            <CaseStudyVideo src={videos.afterWhatChanged.src} label={videos.afterWhatChanged.label} />
+            <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
+              <section className="flex-1">
+                <p className="label-mono">WHAT I CHANGED</p>
+                <h2 className="mt-2 font-[family-name:var(--font-geist)] text-2xl">What I changed</h2>
+                <ul className="mt-4 space-y-3">
+                  {project.whatChanged.map((item) => (
+                    <li key={item} className="text-[var(--text-muted)] leading-relaxed">{item}</li>
+                  ))}
+                </ul>
+              </section>
+              <div className="lg:w-[45%] lg:shrink-0">
+                {videos?.afterWhatChanged ? (
+                  <CaseStudyVideo src={videos.afterWhatChanged.src} label={videos.afterWhatChanged.label} />
+                ) : (
+                  <MediaPlaceholder label="Screenshot / video" aspectRatio="9/16" />
+                )}
+              </div>
+            </div>
           </ScrollReveal>
         )}
 
