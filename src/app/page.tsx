@@ -5,6 +5,7 @@ import { FeaturedProjectCard } from "@/components/featured-project-card";
 import { SkillsGrid } from "@/components/skills-grid";
 import { ProjectCarousel } from "@/components/project-carousel";
 import { ClosingStatement } from "@/components/closing-statement";
+import { FloatingInterests } from "@/components/floating-interests";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default async function Home() {
@@ -25,7 +26,8 @@ export default async function Home() {
   const heroDescription = `Product and UX designer who works across the full stack — research, systems, prototyping, and front-end implementation. At DFYNE I built the UX practice from zero, hired the team, and shipped features that moved real numbers. Before that, trading platforms at JP Morgan and margin analytics at OpenGamma.`;
 
   return (
-    <div>
+    <div className="relative">
+      <FloatingInterests />
       <AnimatedHero
         headline="I design and ship, from concept to production."
         description={heroDescription}
