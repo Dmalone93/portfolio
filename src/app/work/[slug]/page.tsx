@@ -9,20 +9,26 @@ import { CaseStudyVideo } from "@/components/case-study-video";
 
 type ProjectVideo = { src: string; label: string };
 type ProjectVideos = {
-  hero?: ProjectVideo;
   afterSummary?: ProjectVideo;
   afterProcess?: ProjectVideo;
   afterWhatChanged?: ProjectVideo;
   beforeImpact?: ProjectVideo;
+  walkthrough?: ProjectVideo[];
 };
 
 const projectVideos: Record<string, ProjectVideos> = {
   mytcg: {
-    hero: { src: "/videos/mytcg/dashboard.mp4", label: "HOME DASHBOARD" },
     afterSummary: { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
     afterProcess: { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
     afterWhatChanged: { src: "/videos/mytcg/news-feed.mp4", label: "NEWS FEED" },
     beforeImpact: { src: "/videos/mytcg/collection-share.mp4", label: "COLLECTION SHARING" },
+    walkthrough: [
+      { src: "/videos/mytcg/dashboard.mp4", label: "HOME DASHBOARD" },
+      { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
+      { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
+      { src: "/videos/mytcg/news-feed.mp4", label: "NEWS FEED" },
+      { src: "/videos/mytcg/collection-share.mp4", label: "COLLECTION SHARING" },
+    ],
   },
 };
 
@@ -58,11 +64,7 @@ export default async function CaseStudyPage({
 
       {/* Hero media */}
       <ScrollReveal className="mt-8">
-        {videos?.hero ? (
-          <CaseStudyVideo src={videos.hero.src} label={videos.hero.label} />
-        ) : (
-          <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
-        )}
+        <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
       </ScrollReveal>
 
       {/* Header */}
@@ -270,12 +272,12 @@ export default async function CaseStudyPage({
       </div>
 
       {/* All videos in a row — full width */}
-      {videos && (
+      {videos?.walkthrough && videos.walkthrough.length > 0 && (
         <ScrollReveal className="mt-20">
           <section>
             <p className="label-mono">PROTOTYPE WALKTHROUGH</p>
             <div className="mt-6 flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: "none" }}>
-              {Object.values(videos).map((video) => (
+              {videos.walkthrough.map((video) => (
                 <div key={video.src} className="flex-none w-[70vw] sm:w-[280px] lg:w-[calc((100%-64px)/5)]">
                   <CaseStudyVideo src={video.src} />
                   <p className="label-mono mt-3 text-[10px]">{video.label}</p>

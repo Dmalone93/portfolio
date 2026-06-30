@@ -10,7 +10,7 @@ export function CaseStudyVideo({
   label?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
 
   const togglePlay = () => {
     const video = videoRef.current;
@@ -32,18 +32,11 @@ export function CaseStudyVideo({
       <video
         ref={videoRef}
         src={src}
+        autoPlay
         muted
         loop
         playsInline
         onClick={togglePlay}
-        onMouseEnter={() => {
-          videoRef.current?.play();
-          setPlaying(true);
-        }}
-        onMouseLeave={() => {
-          videoRef.current?.pause();
-          setPlaying(false);
-        }}
         className="w-full cursor-pointer"
       />
       {!playing && (

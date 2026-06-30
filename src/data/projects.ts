@@ -160,7 +160,7 @@ export const projects: Project[] = [
       "Designed and built solo — from research and IA through to production deployment on Vercel with Neon Postgres and Clerk Auth.",
     ],
     liveUrl: "https://mytcg-dmalone93s-projects.vercel.app",
-    embedMode: "external-only",
+    embedMode: "iframe",
     prototypeViewport: "mobile",
   },
   {
