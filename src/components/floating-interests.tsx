@@ -10,7 +10,7 @@ const interests = [
   { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 52, startLeft: 4, size: 170, rotate: -6, delay: 600 },
   { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 60, startLeft: 68, size: 320, rotate: 2, delay: 800 },
   { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 35, startLeft: 1, size: 120, rotate: 5, delay: 500 },
-  { label: "Coffee", image: "/hobbies/coffee.png", note: "Aeropress ritual. The process matters as much as the result — measure, pour, press. Design thinking in a cup.", startTop: 62, startLeft: 45, size: 150, rotate: -3, delay: 700 },
+  { label: "Coffee", image: "/hobbies/coffee.png", note: "Aeropress ritual. The process matters as much as the result — measure, pour, press. Design thinking in a cup.", startTop: 15, startLeft: 45, size: 150, rotate: -3, delay: 700 },
   { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 250, rotate: 1, delay: 900 },
 ];
 
@@ -23,7 +23,7 @@ const CONVERGE_END = 80;
 
 export function FloatingInterests() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-10 hidden lg:block" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-10" aria-hidden="true">
       {interests.map((item) => (
         <FloatingItem key={item.label} {...item} />
       ))}

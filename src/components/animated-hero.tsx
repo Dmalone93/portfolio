@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 const principles = [
@@ -177,6 +178,28 @@ export function AnimatedHero({
           transitionDelay: "600ms",
         }}
       />
+
+      {/* Portrait — right side on desktop, above text on mobile */}
+      <div
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-[1] hidden lg:block transition-[opacity,transform] duration-1000"
+        style={{
+          transitionTimingFunction: "var(--easing)",
+          transitionDelay: "1200ms",
+          opacity: mounted ? 1 : 0,
+          transform: mounted ? "translateY(-50%)" : "translateY(-45%)",
+        }}
+      >
+        <div className="relative h-72 w-56 overflow-hidden rounded-2xl shadow-2xl">
+          <Image
+            src="/declan.png"
+            alt="Declan Malone"
+            fill
+            className="object-cover object-top"
+            sizes="224px"
+            priority
+          />
+        </div>
+      </div>
 
       {/* Content */}
       <div className="relative flex min-h-dvh flex-col justify-center">
