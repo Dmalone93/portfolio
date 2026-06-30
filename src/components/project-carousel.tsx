@@ -180,6 +180,7 @@ function getScreenshot(slug: string): string | null {
 function getCardVideo(slug: string): string | null {
   const map: Record<string, string> = {
     cardconomy: "/videos/cardconomy/hero.mp4",
+    mytcg: "/videos/mytcg/hero.mp4",
   };
   return map[slug] ?? null;
 }
