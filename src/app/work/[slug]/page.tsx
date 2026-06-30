@@ -9,6 +9,7 @@ import { CaseStudyVideo } from "@/components/case-study-video";
 
 type ProjectVideo = { src: string; label: string };
 type ProjectVideos = {
+  hero?: ProjectVideo;
   afterSummary?: ProjectVideo;
   afterProcess?: ProjectVideo;
   afterWhatChanged?: ProjectVideo;
@@ -17,6 +18,9 @@ type ProjectVideos = {
 };
 
 const projectVideos: Record<string, ProjectVideos> = {
+  cardconomy: {
+    hero: { src: "/videos/cardconomy/hero.mp4", label: "" },
+  },
   mytcg: {
     afterSummary: { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
     afterProcess: { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
@@ -64,7 +68,11 @@ export default async function CaseStudyPage({
 
       {/* Hero media */}
       <ScrollReveal className="mt-8">
-        <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
+        {videos?.hero ? (
+          <CaseStudyVideo src={videos.hero.src} label={videos.hero.label || undefined} />
+        ) : (
+          <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
+        )}
       </ScrollReveal>
 
       {/* Header */}

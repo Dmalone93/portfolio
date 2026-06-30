@@ -109,6 +109,7 @@ export function ProjectCarousel({
 
 function CarouselCard({ project }: { project: Project }) {
   const screenshot = getScreenshot(project.slug);
+  const video = getCardVideo(project.slug);
 
   return (
     <Link
@@ -117,9 +118,19 @@ function CarouselCard({ project }: { project: Project }) {
       data-cursor="view"
       className="group flex-none w-[85vw] sm:w-[500px] snap-start"
     >
-      {/* Image area */}
+      {/* Media area */}
       <div className="inset-frame relative overflow-hidden rounded-lg bg-[#e8e8e8] aspect-[16/10]">
-        {screenshot ? (
+        {video ? (
+          <video
+            src={video}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+            style={{ transitionTimingFunction: "var(--easing)" }}
+          />
+        ) : screenshot ? (
           <Image
             src={screenshot}
             alt={project.title}
@@ -162,6 +173,13 @@ function getScreenshot(slug: string): string | null {
     "support-hub": "/screenshots/dfyne-homepage.png",
     "athlete-styles": "/screenshots/dfyne-homepage.png",
     "homepage-refresh": "/screenshots/dfyne-homepage.png",
+  };
+  return map[slug] ?? null;
+}
+
+function getCardVideo(slug: string): string | null {
+  const map: Record<string, string> = {
+    cardconomy: "/videos/cardconomy/hero.mp4",
   };
   return map[slug] ?? null;
 }
