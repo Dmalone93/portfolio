@@ -5,6 +5,24 @@ import { PrototypeEmbed } from "@/components/prototype-embed";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { CountUp } from "@/components/count-up";
 import { MediaPlaceholder } from "@/components/media-placeholder";
+import { CaseStudyVideo } from "@/components/case-study-video";
+
+type ProjectVideo = { src: string; label: string };
+type ProjectVideos = {
+  hero?: ProjectVideo;
+  afterSummary?: ProjectVideo;
+  afterProcess?: ProjectVideo;
+  beforeImpact?: ProjectVideo;
+};
+
+const projectVideos: Record<string, ProjectVideos> = {
+  mytcg: {
+    hero: { src: "/videos/mytcg/dashboard.mp4", label: "HOME DASHBOARD" },
+    afterSummary: { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
+    afterProcess: { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
+    beforeImpact: { src: "/videos/mytcg/collection-share.mp4", label: "COLLECTION SHARING" },
+  },
+};
 
 export async function generateStaticParams() {
   const projects = await getProjects();
@@ -27,6 +45,7 @@ export default async function CaseStudyPage({
   const currentIndex = allProjects.findIndex((p) => p.slug === slug);
   const prev = currentIndex > 0 ? allProjects[currentIndex - 1] : null;
   const next = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null;
+  const videos = projectVideos[slug];
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12 sm:py-16">
@@ -37,7 +56,11 @@ export default async function CaseStudyPage({
 
       {/* Hero media */}
       <ScrollReveal className="mt-8">
-        <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
+        {videos?.hero ? (
+          <CaseStudyVideo src={videos.hero.src} label={videos.hero.label} />
+        ) : (
+          <MediaPlaceholder label={`${project.title} — Hero`} aspectRatio="21/9" />
+        )}
       </ScrollReveal>
 
       {/* Header */}
@@ -75,9 +98,13 @@ export default async function CaseStudyPage({
           </ScrollReveal>
         )}
 
-        {/* Media placeholder after summary */}
+        {/* Media after summary */}
         <ScrollReveal>
-          <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          {videos?.afterSummary ? (
+            <CaseStudyVideo src={videos.afterSummary.src} label={videos.afterSummary.label} />
+          ) : (
+            <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          )}
         </ScrollReveal>
 
         {/* Challenge */}
@@ -120,9 +147,13 @@ export default async function CaseStudyPage({
           </ScrollReveal>
         )}
 
-        {/* Media placeholder after process */}
+        {/* Media after process */}
         <ScrollReveal>
-          <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          {videos?.afterProcess ? (
+            <CaseStudyVideo src={videos.afterProcess.src} label={videos.afterProcess.label} />
+          ) : (
+            <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          )}
         </ScrollReveal>
 
         {/* What Changed */}
@@ -202,9 +233,13 @@ export default async function CaseStudyPage({
           </ScrollReveal>
         )}
 
-        {/* Media placeholder before impact */}
+        {/* Media before impact */}
         <ScrollReveal>
-          <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          {videos?.beforeImpact ? (
+            <CaseStudyVideo src={videos.beforeImpact.src} label={videos.beforeImpact.label} />
+          ) : (
+            <MediaPlaceholder label="Screenshot / video" aspectRatio="16/9" />
+          )}
         </ScrollReveal>
 
         {/* Impact */}
