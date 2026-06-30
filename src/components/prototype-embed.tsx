@@ -36,16 +36,19 @@ export function PrototypeEmbed({
   if (isMobile) {
     return (
       <div className="flex justify-center">
-        {/* Phone frame */}
-        <div className="relative w-[375px]">
-          {/* Notch */}
-          <div className="relative z-10 mx-auto h-7 w-36 rounded-b-2xl bg-[#111]" />
+        <div
+          className="relative overflow-hidden rounded-[40px] bg-[#1a1a1a] p-[10px] shadow-2xl"
+          style={{ width: 320 }}
+        >
+          {/* Dynamic island */}
+          <div className="absolute top-0 left-1/2 z-20 -translate-x-1/2">
+            <div className="h-[26px] w-[100px] rounded-b-[14px] bg-[#1a1a1a]" />
+          </div>
+
           {/* Screen */}
-          <div className="relative -mt-1 overflow-hidden rounded-[2.5rem] border-[3px] border-[#111] bg-[var(--bg-elevated)] shadow-xl">
-            {/* Status bar area */}
-            <div className="h-3 bg-[#111]" />
+          <div className="relative overflow-hidden rounded-[30px] bg-white">
             {!loaded && (
-              <div className="absolute inset-0 flex items-center justify-center text-sm text-[var(--text-muted)]">
+              <div className="flex items-center justify-center text-sm text-[var(--text-muted)]" style={{ height: 680 }}>
                 Loading prototype…
               </div>
             )}
@@ -53,14 +56,15 @@ export function PrototypeEmbed({
               src={url}
               title="Live prototype"
               className="w-full"
-              style={{ height: "750px" }}
+              style={{ height: 680, display: loaded ? "block" : "none" }}
               onLoad={() => setLoaded(true)}
               allow="clipboard-write"
             />
-            {/* Home indicator */}
-            <div className="flex justify-center py-2 bg-white">
-              <div className="h-1 w-28 rounded-full bg-[#111]/20" />
-            </div>
+          </div>
+
+          {/* Home indicator */}
+          <div className="flex justify-center pt-[6px] pb-[2px]">
+            <div className="h-[4px] w-[100px] rounded-full bg-white/30" />
           </div>
         </div>
       </div>
