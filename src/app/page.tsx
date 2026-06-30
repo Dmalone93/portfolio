@@ -5,6 +5,7 @@ import { FeaturedProjectCard } from "@/components/featured-project-card";
 import { SkillsGrid } from "@/components/skills-grid";
 import { ProjectCarousel } from "@/components/project-carousel";
 import { ClosingStatement } from "@/components/closing-statement";
+import { DesignManifesto } from "@/components/design-manifesto";
 import { FloatingInterests } from "@/components/floating-interests";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -74,6 +75,8 @@ export default async function Home() {
           />
         </ScrollReveal>
       </section>
+
+      <DesignManifesto />
 
       <ClosingStatement />
     </div>
