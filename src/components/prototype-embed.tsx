@@ -32,10 +32,43 @@ export function PrototypeEmbed({
   }
 
   const isMobile = viewport === "mobile";
-  const aspectClass = isMobile ? "aspect-[9/16] max-w-sm" : "aspect-video w-full";
+
+  if (isMobile) {
+    return (
+      <div className="flex justify-center">
+        {/* Phone frame */}
+        <div className="relative w-[375px]">
+          {/* Notch */}
+          <div className="relative z-10 mx-auto h-7 w-36 rounded-b-2xl bg-[#111]" />
+          {/* Screen */}
+          <div className="relative -mt-1 overflow-hidden rounded-[2.5rem] border-[3px] border-[#111] bg-[var(--bg-elevated)] shadow-xl">
+            {/* Status bar area */}
+            <div className="h-3 bg-[#111]" />
+            {!loaded && (
+              <div className="absolute inset-0 flex items-center justify-center text-sm text-[var(--text-muted)]">
+                Loading prototype…
+              </div>
+            )}
+            <iframe
+              src={url}
+              title="Live prototype"
+              className="w-full"
+              style={{ height: "750px" }}
+              onLoad={() => setLoaded(true)}
+              allow="clipboard-write"
+            />
+            {/* Home indicator */}
+            <div className="flex justify-center py-2 bg-white">
+              <div className="h-1 w-28 rounded-full bg-[#111]/20" />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className={`relative mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] ${aspectClass}`}>
+    <div className="relative mx-auto overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-elevated)] aspect-video w-full">
       {!loaded && (
         <div className="absolute inset-0 flex items-center justify-center text-sm text-[var(--text-muted)]">
           Loading prototype…
