@@ -267,6 +267,23 @@ export default async function CaseStudyPage({
         )}
       </div>
 
+      {/* All videos in a row — full width */}
+      {videos && (
+        <ScrollReveal className="mt-20">
+          <section>
+            <p className="label-mono">PROTOTYPE WALKTHROUGH</p>
+            <div className="mt-6 flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: "none" }}>
+              {Object.values(videos).map((video) => (
+                <div key={video.src} className="flex-none w-[70vw] sm:w-[280px] lg:w-[calc((100%-64px)/5)]">
+                  <CaseStudyVideo src={video.src} />
+                  <p className="label-mono mt-3 text-[10px]">{video.label}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </ScrollReveal>
+      )}
+
       {/* Prev / Next */}
       <nav className="mx-auto mt-20 flex max-w-3xl items-center justify-between border-t border-[var(--border)] pt-8">
         {prev ? (
