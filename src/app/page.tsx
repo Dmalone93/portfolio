@@ -1,5 +1,6 @@
 import { getProfile, getProjects } from "@/lib/site-content";
 import { AnimatedHero } from "@/components/animated-hero";
+import { FeaturedProjectCard } from "@/components/featured-project-card";
 import { ProjectCarousel } from "@/components/project-carousel";
 import { ScrollReveal } from "@/components/scroll-reveal";
 
@@ -27,18 +28,26 @@ export default async function Home() {
         description={heroDescription}
       />
 
-      {/* Personal Projects */}
-      <section id="work" className="mx-auto max-w-6xl px-6 py-24">
+      {/* Personal Projects — full-width stacked */}
+      <section id="work" className="mx-auto max-w-6xl px-6 pt-32 pb-16">
         <ScrollReveal>
-          <ProjectCarousel
-            title="Personal projects"
-            projects={personalProjects}
-          />
+          <p className="label-mono">PERSONAL PROJECTS</p>
+          <h2 className="mt-3 font-[family-name:var(--font-geist)] text-3xl sm:text-4xl">
+            Selected work &amp; explorations
+          </h2>
         </ScrollReveal>
+
+        <div className="mt-16 space-y-32">
+          {personalProjects.map((project) => (
+            <ScrollReveal key={project.slug}>
+              <FeaturedProjectCard project={project} />
+            </ScrollReveal>
+          ))}
+        </div>
       </section>
 
-      {/* Work */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      {/* Work — carousel */}
+      <section className="mx-auto max-w-6xl px-6 py-24">
         <ScrollReveal>
           <ProjectCarousel
             title="Work"
@@ -47,8 +56,8 @@ export default async function Home() {
         </ScrollReveal>
       </section>
 
-      {/* Private Work */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      {/* Private Work — carousel */}
+      <section className="mx-auto max-w-6xl px-6 pb-32">
         <ScrollReveal>
           <ProjectCarousel
             title="Private work"
