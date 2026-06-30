@@ -46,8 +46,6 @@ function FloatingItem({
 
     // Parallax on scroll — items drift at different rates
     const speed = 0.03 + Math.random() * 0.04;
-    let rafId: number;
-
     function onScroll() {
       const scrollY = window.scrollY;
       el!.style.transform = `translateY(${scrollY * speed}px) rotate(${rotate}deg)`;
@@ -62,7 +60,6 @@ function FloatingItem({
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (rafId) cancelAnimationFrame(rafId);
     };
   }, [rotate, delay]);
 
