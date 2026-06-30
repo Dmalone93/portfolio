@@ -1,6 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+const principles = [
+  "innovative",
+  "useful",
+  "aesthetic",
+  "understandable",
+  "unobtrusive",
+  "honest",
+  "long-lasting",
+  "thorough",
+  "sustainable",
+  "minimal",
+];
 
 export function AnimatedHero({
   headline,
@@ -11,15 +24,36 @@ export function AnimatedHero({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [principleIndex, setPrincipleIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
-  // Animated particle/node network on canvas
+  // Cycle through principles
+  useEffect(() => {
+    if (paused || !mounted) return;
+
+    const interval = setInterval(() => {
+      setTransitioning(true);
+      setTimeout(() => {
+        setPrincipleIndex((prev) => (prev + 1) % principles.length);
+        setTransitioning(false);
+      }, 300);
+    }, 2500);
+
+    return () => clearInterval(interval);
+  }, [paused, mounted]);
+
+  const togglePause = useCallback(() => {
+    setPaused((p) => !p);
+  }, []);
+
+  // Canvas particle animation
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -28,7 +62,7 @@ export function AnimatedHero({
     if (!ctx) return;
 
     let animId: number;
-    let mouse = { x: -1000, y: -1000 };
+    const mouse = { x: -1000, y: -1000 };
 
     function resize() {
       const dpr = window.devicePixelRatio || 1;
@@ -40,7 +74,6 @@ export function AnimatedHero({
     resize();
     window.addEventListener("resize", resize);
 
-    // Nodes
     const nodeCount = 100;
     const nodes: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
     const w = () => canvas!.offsetWidth;
@@ -59,16 +92,12 @@ export function AnimatedHero({
     function draw() {
       ctx!.clearRect(0, 0, w(), h());
 
-      // Update positions
       for (const node of nodes) {
         node.x += node.vx;
         node.y += node.vy;
-
-        // Bounce off edges
         if (node.x < 0 || node.x > w()) node.vx *= -1;
         if (node.y < 0 || node.y > h()) node.vy *= -1;
 
-        // Mouse repulsion
         const dx = node.x - mouse.x;
         const dy = node.y - mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -79,9 +108,7 @@ export function AnimatedHero({
         }
       }
 
-      // Draw connections
       const connectionDist = 180;
-      ctx!.strokeStyle = "rgba(0, 0, 0, 0.15)";
       ctx!.lineWidth = 1;
 
       for (let i = 0; i < nodes.length; i++) {
@@ -100,7 +127,6 @@ export function AnimatedHero({
         }
       }
 
-      // Draw nodes
       for (const node of nodes) {
         ctx!.fillStyle = "rgba(0, 0, 0, 0.35)";
         ctx!.beginPath();
@@ -124,7 +150,6 @@ export function AnimatedHero({
 
     canvas!.addEventListener("mousemove", onMouseMove);
     canvas!.addEventListener("mouseleave", onMouseLeave);
-
     animId = requestAnimationFrame(draw);
 
     return () => {
@@ -142,7 +167,7 @@ export function AnimatedHero({
       ref={containerRef}
       className="relative min-h-dvh overflow-hidden px-6"
     >
-      {/* Interactive canvas animation */}
+      {/* Interactive canvas */}
       <canvas
         ref={canvasRef}
         className="pointer-events-auto absolute inset-0 h-full w-full transition-opacity duration-[2000ms]"
@@ -153,41 +178,97 @@ export function AnimatedHero({
         }}
       />
 
-      {/* Text content */}
+      {/* Content */}
       <div className="relative flex min-h-dvh flex-col justify-center">
         <div className="mx-auto w-full max-w-6xl">
-          {/* Headline — left aligned */}
-          <h1 className="max-w-3xl">
-            {words.map((word, i) => (
-              <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
-                <span
-                  className="inline-block font-[family-name:var(--font-geist)] text-4xl font-semibold sm:text-6xl lg:text-7xl tracking-normal leading-[1.15] transition-[opacity,transform] duration-[800ms]"
-                  style={{
-                    transitionTimingFunction: "var(--easing)",
-                    transitionDelay: `${800 + i * 100}ms`,
-                    opacity: mounted ? 1 : 0,
-                    transform: mounted ? "translateY(0)" : "translateY(100%)",
-                  }}
-                >
-                  {word}
-                </span>
+
+          {/* Cycling Rams principle — the interactive centrepiece */}
+          <div
+            className="transition-[opacity,transform] duration-[800ms]"
+            style={{
+              transitionTimingFunction: "var(--easing)",
+              transitionDelay: "1000ms",
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(30px)",
+            }}
+          >
+            <p className="label-mono text-[10px]">
+              {paused ? "PAUSED — CLICK TO RESUME" : "CLICK TO PAUSE"}
+            </p>
+            <button
+              type="button"
+              onClick={togglePause}
+              className="mt-3 text-left cursor-pointer"
+            >
+              <span className="block font-[family-name:var(--font-geist)] text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[var(--text-muted)]">
+                Good design is
               </span>
-            ))}
-          </h1>
+              <span
+                className="block font-[family-name:var(--font-geist)] text-5xl sm:text-7xl lg:text-[6rem] font-bold tracking-tight text-[var(--text)] transition-all duration-300 mt-1"
+                style={{
+                  transitionTimingFunction: "var(--easing)",
+                  opacity: transitioning ? 0 : 1,
+                  transform: transitioning ? "translateY(10px)" : "translateY(0)",
+                }}
+              >
+                {principles[principleIndex]}.
+              </span>
+            </button>
+
+            {/* Progress dots */}
+            <div className="mt-6 flex gap-1.5">
+              {principles.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => {
+                    setPrincipleIndex(i);
+                    setPaused(true);
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === principleIndex
+                      ? "w-6 bg-[var(--text)]"
+                      : "w-1.5 bg-[var(--border)]"
+                  }`}
+                  aria-label={`Principle ${i + 1}: ${principles[i]}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Original headline */}
+          <div className="mt-16">
+            <h1 className="max-w-3xl">
+              {words.map((word, i) => (
+                <span key={`${word}-${i}`} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+                  <span
+                    className="inline-block font-[family-name:var(--font-geist)] text-2xl sm:text-3xl lg:text-4xl font-medium tracking-normal leading-[1.2] transition-[opacity,transform] duration-[800ms]"
+                    style={{
+                      transitionTimingFunction: "var(--easing)",
+                      transitionDelay: `${1400 + i * 80}ms`,
+                      opacity: mounted ? 1 : 0,
+                      transform: mounted ? "translateY(0)" : "translateY(100%)",
+                    }}
+                  >
+                    {word}
+                  </span>
+                </span>
+              ))}
+            </h1>
+          </div>
 
           {/* Description */}
           <p
-            className="mt-6 max-w-xl text-[var(--text-muted)] leading-relaxed transition-[opacity,transform] duration-[800ms]"
+            className="mt-4 max-w-xl text-sm text-[var(--text-muted)] leading-relaxed transition-[opacity,transform] duration-[800ms]"
             style={{
               transitionTimingFunction: "var(--easing)",
-              transitionDelay: `${800 + words.length * 100 + 100}ms`,
+              transitionDelay: `${1400 + words.length * 80 + 100}ms`,
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateY(20px)",
             }}
           >
             {description}
           </p>
-
         </div>
       </div>
 
@@ -196,7 +277,7 @@ export function AnimatedHero({
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-opacity duration-1000"
         style={{
           opacity: mounted ? 1 : 0,
-          transitionDelay: `${800 + words.length * 100 + 400}ms`,
+          transitionDelay: `${1400 + words.length * 80 + 400}ms`,
         }}
       >
         <span className="label-mono text-[10px]">Scroll</span>
