@@ -11,6 +11,7 @@ const interests = [
   { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 60, startLeft: 68, size: 320, rotate: 2, delay: 800 },
   { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 35, startLeft: 1, size: 120, rotate: 5, delay: 500 },
   { label: "Coffee", image: "/hobbies/coffee.png", note: "Aeropress ritual. The process matters as much as the result — measure, pour, press. Design thinking in a cup.", startTop: 62, startLeft: 45, size: 150, rotate: -3, delay: 700 },
+  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 250, rotate: 1, delay: 900 },
 ];
 
 // Target: the about-strip photo position (roughly where the photo sits on screen)
