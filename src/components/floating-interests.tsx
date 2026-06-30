@@ -4,11 +4,12 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const interests = [
-  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 10, startLeft: 80, size: 140, rotate: 6, delay: 0 },
-  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 25, startLeft: 3, size: 120, rotate: -4, delay: 200 },
-  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 45, startLeft: 83, size: 130, rotate: 3, delay: 400 },
-  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 55, startLeft: 6, size: 110, rotate: -6, delay: 600 },
-  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 70, startLeft: 76, size: 160, rotate: 2, delay: 800 },
+  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 8, startLeft: 78, size: 200, rotate: 6, delay: 0 },
+  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 20, startLeft: 2, size: 180, rotate: -4, delay: 200 },
+  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 42, startLeft: 84, size: 110, rotate: 3, delay: 400 },
+  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 52, startLeft: 4, size: 170, rotate: -6, delay: 600 },
+  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 68, startLeft: 80, size: 140, rotate: 2, delay: 800 },
+  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 35, startLeft: 1, size: 120, rotate: 5, delay: 500 },
 ];
 
 // Photo position — right side of hero
