@@ -12,6 +12,7 @@ type ProjectVideos = {
   hero?: ProjectVideo;
   afterSummary?: ProjectVideo;
   afterProcess?: ProjectVideo;
+  afterWhatChanged?: ProjectVideo;
   beforeImpact?: ProjectVideo;
 };
 
@@ -20,6 +21,7 @@ const projectVideos: Record<string, ProjectVideos> = {
     hero: { src: "/videos/mytcg/dashboard.mp4", label: "HOME DASHBOARD" },
     afterSummary: { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
     afterProcess: { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
+    afterWhatChanged: { src: "/videos/mytcg/news-feed.mp4", label: "NEWS FEED" },
     beforeImpact: { src: "/videos/mytcg/collection-share.mp4", label: "COLLECTION SHARING" },
   },
 };
@@ -168,6 +170,13 @@ export default async function CaseStudyPage({
                 ))}
               </ul>
             </section>
+          </ScrollReveal>
+        )}
+
+        {/* Media after what changed */}
+        {videos?.afterWhatChanged && (
+          <ScrollReveal>
+            <CaseStudyVideo src={videos.afterWhatChanged.src} label={videos.afterWhatChanged.label} />
           </ScrollReveal>
         )}
 
