@@ -7,8 +7,8 @@ html {
 
 /* Color tokens */
 :root {
-  --bg: #ffffff;
-  --bg-elevated: #f7f7f7;
+  --bg: #f3f3f3;
+  --bg-elevated: #ffffff;
   --bg-preloader: #f5f5f5;
   --text: #0a0a0a;
   --text-muted: #555555;

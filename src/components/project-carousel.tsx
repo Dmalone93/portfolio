@@ -71,7 +71,7 @@ export function ProjectCarousel({
             type="button"
             onClick={() => scroll("left")}
             disabled={!canScrollLeft}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[var(--text)] hover:text-[var(--text)] disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--text-muted)] transition-colors hover:border-[var(--text)] hover:text-[var(--text)] disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Previous"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -82,7 +82,7 @@ export function ProjectCarousel({
             type="button"
             onClick={() => scroll("right")}
             disabled={!canScrollRight}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] text-[var(--text-muted)] transition-colors hover:border-[var(--text)] hover:text-[var(--text)] disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--text-muted)] transition-colors hover:border-[var(--text)] hover:text-[var(--text)] disabled:opacity-30 disabled:cursor-not-allowed"
             aria-label="Next"
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -116,7 +116,7 @@ function CarouselCard({ project }: { project: Project }) {
       href={`/work/${project.slug}`}
       data-card
       data-cursor="view"
-      className="group flex-none w-[85vw] sm:w-[500px] snap-start"
+      className="group flex-none w-[85vw] sm:w-[520px] snap-start rounded-xl bg-white p-4 shadow-sm transition-shadow duration-300 hover:shadow-md"
     >
       {/* Media area */}
       <div className="inset-frame relative overflow-hidden rounded-lg bg-[#ebebeb] aspect-[16/10]">
@@ -137,7 +137,7 @@ function CarouselCard({ project }: { project: Project }) {
             fill
             className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
             style={{ transitionTimingFunction: "var(--easing)" }}
-            sizes="(max-width: 640px) 85vw, 500px"
+            sizes="(max-width: 640px) 85vw, 520px"
           />
         ) : (
           <div className="flex h-full items-center justify-center">
@@ -147,7 +147,7 @@ function CarouselCard({ project }: { project: Project }) {
       </div>
 
       {/* Info */}
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h3 className="font-[family-name:var(--font-geist)] text-xl text-[var(--text)]">
             {project.title}

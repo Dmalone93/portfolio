@@ -9,7 +9,7 @@ export function Nav({ name }: { name: string }) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/80 backdrop-blur-sm">
+      <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-white/80 backdrop-blur-sm">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link
             href="/"
