@@ -22,6 +22,7 @@ const projectVideos: Record<string, ProjectVideos> = {
     hero: { src: "/videos/cardconomy/hero.mp4", label: "" },
   },
   mytcg: {
+    hero: { src: "/videos/mytcg/hero.mp4", label: "" },
     afterSummary: { src: "/videos/mytcg/search-browse.mp4", label: "SEARCH & BROWSE" },
     afterProcess: { src: "/videos/mytcg/card-detail.mp4", label: "CARD DETAIL & PRICING" },
     afterWhatChanged: { src: "/videos/mytcg/news-feed.mp4", label: "NEWS FEED" },
