@@ -284,12 +284,52 @@ export function AnimatedHero({
   );
 }
 
-const matrixChars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01{}[]<>/=;:";
+const codeLines = [
+  'const design = await research(users);',
+  'function buildSystem(tokens) {',
+  '  return tokens.map(t => resolve(t));',
+  'export default function Layout() {',
+  '  const [state, dispatch] = useReducer(',
+  '    reducer, initialState',
+  '  );',
+  'async function fetchData(endpoint) {',
+  '  const res = await fetch(endpoint);',
+  '  return res.json();',
+  'const theme = createTheme({',
+  '  colors: { primary: "#0a0a0a" },',
+  '  fonts: { body: "Geist Sans" },',
+  '});',
+  'if (viewport === "mobile") {',
+  '  return <MobileLayout />;',
+  'const metrics = calculateImpact({',
+  '  aov: 0.13, conversion: 0.05',
+  '});',
+  '.component { display: grid; }',
+  'gap: var(--space-4);',
+  'border-radius: var(--radius);',
+  'SELECT * FROM cards WHERE',
+  '  set_id = $1 AND rarity = $2',
+  'ORDER BY price DESC LIMIT 60;',
+  'const observer = new Intersection',
+  '  Observer(callback, { threshold: 0.1 });',
+  'npm run build && npm run deploy',
+  'git commit -m "ship it"',
+  'return <div className="hero">',
+];
 
 function PortraitGlitch() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const imgRef = useRef<HTMLImageElement | null>(null);
   const [hovered, setHovered] = useState(false);
   const animRef = useRef<number>(0);
+
+  // Load the portrait image for masking
+  useEffect(() => {
+    const img = new window.Image();
+    img.crossOrigin = "anonymous";
+    img.src = "/declan.png";
+    img.onload = () => { imgRef.current = img; };
+  }, []);
 
   useEffect(() => {
     if (!hovered) {
@@ -307,34 +347,46 @@ function PortraitGlitch() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const w = 340;
+    const h = 450;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = 340 * dpr;
-    canvas.height = 450 * dpr;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
     ctx.scale(dpr, dpr);
 
-    const columns = Math.floor(340 / 14);
-    const drops: number[] = new Array(columns).fill(0).map(() => Math.random() * -30);
+    const rows = Math.floor(h / 14);
+    // Each row scrolls left-to-right at its own speed
+    const rowState = Array.from({ length: rows }, (_, i) => ({
+      text: codeLines[i % codeLines.length] + "   " + codeLines[(i + 7) % codeLines.length],
+      offset: Math.random() * -200,
+      speed: 0.5 + Math.random() * 1.5,
+    }));
 
     function draw() {
-      ctx!.fillStyle = "rgba(0, 0, 0, 0.04)";
-      ctx!.fillRect(0, 0, 340, 450);
+      ctx!.clearRect(0, 0, w, h);
 
-      ctx!.fillStyle = "rgba(0, 200, 80, 0.6)";
-      ctx!.font = "12px monospace";
+      // Draw code text
+      ctx!.font = "11px monospace";
+      ctx!.fillStyle = "rgba(0, 180, 80, 0.85)";
 
-      for (let i = 0; i < drops.length; i++) {
-        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-        const x = i * 14;
-        const y = drops[i] * 14;
+      for (let r = 0; r < rows; r++) {
+        const row = rowState[r];
+        row.offset += row.speed;
 
-        if (y > 0) {
-          ctx!.fillText(char, x, y);
-        }
+        // Wrap around
+        const textWidth = row.text.length * 6.6;
+        if (row.offset > textWidth) row.offset = -200;
 
-        if (y > 450 && Math.random() > 0.98) {
-          drops[i] = 0;
-        }
-        drops[i] += 0.4 + Math.random() * 0.3;
+        const y = r * 14 + 11;
+        ctx!.fillText(row.text, -row.offset + w, y);
+        ctx!.fillText(row.text, -row.offset, y);
+      }
+
+      // Mask to portrait silhouette using destination-in
+      if (imgRef.current) {
+        ctx!.globalCompositeOperation = "destination-in";
+        ctx!.drawImage(imgRef.current, 0, 0, w, h);
+        ctx!.globalCompositeOperation = "source-over";
       }
 
       animRef.current = requestAnimationFrame(draw);
@@ -354,14 +406,14 @@ function PortraitGlitch() {
         src="/declan.png"
         alt="Declan Malone"
         fill
-        className={`object-contain object-top transition-all duration-300 ${hovered ? "brightness-50 contrast-125" : ""}`}
+        className={`object-contain object-top transition-all duration-500 ${hovered ? "opacity-20" : "opacity-100"}`}
         sizes="340px"
         priority
       />
-      {/* Matrix rain overlay */}
+      {/* Code overlay — masked to silhouette */}
       <canvas
         ref={canvasRef}
-        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`}
         style={{ width: 340, height: 450 }}
       />
     </div>

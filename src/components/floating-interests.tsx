@@ -21,7 +21,7 @@ const CONVERGE_END = 80;
 
 export function FloatingInterests() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-10" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-10 hidden" aria-hidden="true">
       {interests.map((item) => (
         <FloatingItem key={item.label} {...item} />
       ))}
