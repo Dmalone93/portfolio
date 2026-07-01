@@ -406,7 +406,7 @@ function PortraitGlitch() {
         src="/declan.png"
         alt="Declan Malone"
         fill
-        className={`object-contain object-top transition-all duration-500 ${hovered ? "opacity-20" : "opacity-100"}`}
+        className={`object-contain object-top transition-all duration-500 ${hovered ? "opacity-0" : "opacity-100"}`}
         sizes="340px"
         priority
       />
