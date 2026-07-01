@@ -14,16 +14,15 @@ const interests = [
   { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 250, rotate: 1, delay: 900 },
 ];
 
-// Target: the about-strip photo position (roughly where the photo sits on screen)
-// About strip is the second section, photo is on the left ~10% from left, roughly 120vh down
-const TARGET_TOP = 18; // percentage of viewport
-const TARGET_LEFT = 12;
+// Target: the portrait in the hero (right side on desktop)
+const TARGET_TOP = 45;
+const TARGET_LEFT = 80;
 const CONVERGE_START = 0;
 const CONVERGE_END = 80;
 
 export function FloatingInterests() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-10" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-10 scale-[0.45] sm:scale-[0.6] lg:scale-100 origin-center" aria-hidden="true">
       {interests.map((item) => (
         <FloatingItem key={item.label} {...item} />
       ))}
