@@ -78,6 +78,20 @@ html {
   transform: scaleX(1);
 }
 
+/* Mac window scale in */
+@keyframes scaleIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Hobby wiggle on hover */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(var(--rotate)) scale(1); }
+  25% { transform: rotate(calc(var(--rotate) + 3deg)) scale(1.05); }
+  50% { transform: rotate(calc(var(--rotate) - 2deg)) scale(1.08); }
+  75% { transform: rotate(calc(var(--rotate) + 1deg)) scale(1.04); }
+}
+
 /* Marquee animation */
 @keyframes marquee {
   0% { transform: translateX(0); }
