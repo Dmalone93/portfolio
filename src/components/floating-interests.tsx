@@ -4,13 +4,13 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const interests = [
-  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 5, startLeft: 70, size: 160, mobileSize: 70, rotate: 6, delay: 0 },
-  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 15, startLeft: 0, size: 150, mobileSize: 65, rotate: -4, delay: 200 },
-  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 35, startLeft: 73, size: 100, mobileSize: 45, rotate: 3, delay: 400 },
-  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 50, startLeft: 0, size: 140, mobileSize: 60, rotate: -6, delay: 600 },
-  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 70, startLeft: 65, size: 200, mobileSize: 80, rotate: 2, delay: 800 },
-  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 65, startLeft: 2, size: 100, mobileSize: 45, rotate: 5, delay: 500 },
-  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 80, startLeft: 25, size: 180, mobileSize: 75, rotate: 1, delay: 900 },
+  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 3, startLeft: 58, size: 220, mobileSize: 80, rotate: 8, delay: 0 },
+  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 25, startLeft: 2, size: 150, mobileSize: 60, rotate: -5, delay: 200 },
+  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 8, startLeft: 30, size: 100, mobileSize: 40, rotate: 12, delay: 400 },
+  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 55, startLeft: 5, size: 150, mobileSize: 55, rotate: -3, delay: 600 },
+  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 72, startLeft: 55, size: 100, mobileSize: 45, rotate: 2, delay: 800 },
+  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 45, startLeft: 65, size: 220, mobileSize: 75, rotate: -7, delay: 500 },
+  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 260, mobileSize: 90, rotate: -2, delay: 900 },
 ];
 
 // Target: the portrait in the hero (right side on desktop)
@@ -90,7 +90,9 @@ function FloatingItem({
     return () => window.removeEventListener("scroll", onScroll);
   }, [startTop, startLeft, rotate, delay]);
 
-  const tooltipSide = startLeft > 50 ? "right" : "left";
+  // Smart tooltip position: avoid clipping off any edge
+  const tooltipX = startLeft > 40 ? "right" : "left";
+  const tooltipY = startTop > 60 ? "above" : "below";
 
   return (
     <div
@@ -121,8 +123,10 @@ function FloatingItem({
 
       {showNote && (
         <div
-          className={`absolute top-1/2 -translate-y-1/2 z-50 w-60 rounded-xl bg-white p-5 shadow-2xl border border-[var(--border)] ${
-            tooltipSide === "left" ? "left-full ml-4" : "right-full mr-4"
+          className={`absolute z-50 w-60 rounded-xl bg-white p-5 shadow-2xl border border-[var(--border)] ${
+            tooltipX === "left" ? "left-full ml-4" : "right-full mr-4"
+          } ${
+            tooltipY === "above" ? "bottom-0" : "top-0"
           }`}
           style={{ pointerEvents: "none" }}
         >
