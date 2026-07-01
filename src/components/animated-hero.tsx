@@ -75,7 +75,7 @@ export function AnimatedHero({
     resize();
     window.addEventListener("resize", resize);
 
-    const nodeCount = 100;
+    const nodeCount = 25;
     const nodes: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
     const w = () => canvas!.offsetWidth;
     const h = () => canvas!.offsetHeight;
@@ -110,7 +110,7 @@ export function AnimatedHero({
       }
 
       const connectionDist = 180;
-      ctx!.lineWidth = 1;
+      ctx!.lineWidth = 0.5;
 
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
@@ -118,7 +118,7 @@ export function AnimatedHero({
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < connectionDist) {
-            const alpha = (1 - dist / connectionDist) * 0.3;
+            const alpha = (1 - dist / connectionDist) * 0.08;
             ctx!.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
             ctx!.beginPath();
             ctx!.moveTo(nodes[i].x, nodes[i].y);
@@ -129,7 +129,7 @@ export function AnimatedHero({
       }
 
       for (const node of nodes) {
-        ctx!.fillStyle = "rgba(0, 0, 0, 0.35)";
+        ctx!.fillStyle = "rgba(0, 0, 0, 0.1)";
         ctx!.beginPath();
         ctx!.arc(node.x, node.y, node.r, 0, Math.PI * 2);
         ctx!.fill();
@@ -195,7 +195,6 @@ export function AnimatedHero({
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <p className="label-mono text-[10px]">PRINCIPLES</p>
             <button
               type="button"
               onClick={togglePause}

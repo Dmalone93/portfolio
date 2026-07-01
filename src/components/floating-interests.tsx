@@ -113,13 +113,13 @@ function FloatingItem({
 
       {showNote && (
         <div
-          className={`absolute top-1/2 -translate-y-1/2 z-50 w-56 rounded-xl bg-white p-4 shadow-xl ${
-            tooltipSide === "left" ? "left-full ml-3" : "right-full mr-3"
+          className={`absolute top-1/2 -translate-y-1/2 z-50 w-60 rounded-xl bg-white p-5 shadow-2xl border border-[var(--border)] ${
+            tooltipSide === "left" ? "left-full ml-4" : "right-full mr-4"
           }`}
           style={{ pointerEvents: "none" }}
         >
-          <p className="label-mono text-[10px] text-[var(--text)]">{label}</p>
-          <p className="mt-1.5 text-xs leading-relaxed text-[var(--text-muted)]">{note}</p>
+          <p className="font-[family-name:var(--font-geist)] text-sm font-semibold text-[var(--text)]">{label}</p>
+          <p className="mt-2 text-xs leading-relaxed text-[var(--text-muted)]">{note}</p>
         </div>
       )}
     </div>
