@@ -179,32 +179,12 @@ export function AnimatedHero({
         }}
       />
 
-      {/* Portrait — right side on desktop, above text on mobile */}
-      <div
-        className="absolute right-8 top-1/2 -translate-y-1/2 z-[1] hidden lg:block transition-[opacity,transform] duration-1000"
-        style={{
-          transitionTimingFunction: "var(--easing)",
-          transitionDelay: "1200ms",
-          opacity: mounted ? 1 : 0,
-          transform: mounted ? "translateY(-50%)" : "translateY(-45%)",
-        }}
-      >
-        <div className="relative h-72 w-56 overflow-hidden rounded-2xl shadow-2xl">
-          <Image
-            src="/declan.png"
-            alt="Declan Malone"
-            fill
-            className="object-cover object-top"
-            sizes="224px"
-            priority
-          />
-        </div>
-      </div>
-
       {/* Content */}
       <div className="relative flex min-h-dvh flex-col justify-center">
-        <div className="mx-auto w-full max-w-6xl">
+        <div className="mx-auto w-full max-w-6xl flex flex-col lg:flex-row lg:items-center lg:justify-between lg:gap-16">
 
+          {/* Text side */}
+          <div className="flex-1">
           {/* Cycling Rams principle — the interactive centrepiece */}
           <div
             className="transition-[opacity,transform] duration-[800ms]"
@@ -215,9 +195,7 @@ export function AnimatedHero({
               transform: mounted ? "translateY(0)" : "translateY(30px)",
             }}
           >
-            <p className="label-mono text-[10px]">
-              {paused ? "PAUSED — CLICK TO RESUME" : "CLICK TO PAUSE"}
-            </p>
+            <p className="label-mono text-[10px]">PRINCIPLES</p>
             <button
               type="button"
               onClick={togglePause}
@@ -238,25 +216,6 @@ export function AnimatedHero({
               </span>
             </button>
 
-            {/* Progress dots */}
-            <div className="mt-6 flex gap-1.5">
-              {principles.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => {
-                    setPrincipleIndex(i);
-                    setPaused(true);
-                  }}
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === principleIndex
-                      ? "w-6 bg-[var(--text)]"
-                      : "w-1.5 bg-[var(--border)]"
-                  }`}
-                  aria-label={`Principle ${i + 1}: ${principles[i]}`}
-                />
-              ))}
-            </div>
           </div>
 
           {/* Original headline */}
@@ -292,6 +251,29 @@ export function AnimatedHero({
           >
             {description}
           </p>
+          </div>
+
+          {/* Portrait — inline with content */}
+          <div
+            className="hidden lg:block lg:shrink-0 transition-[opacity,transform] duration-1000"
+            style={{
+              transitionTimingFunction: "var(--easing)",
+              transitionDelay: "1200ms",
+              opacity: mounted ? 1 : 0,
+              transform: mounted ? "translateY(0)" : "translateY(20px)",
+            }}
+          >
+            <div className="relative h-[450px] w-[340px]">
+              <Image
+                src="/declan.png"
+                alt="Declan Malone"
+                fill
+                className="object-contain object-top"
+                sizes="340px"
+                priority
+              />
+            </div>
+          </div>
         </div>
       </div>
 

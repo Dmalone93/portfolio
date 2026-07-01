@@ -19,7 +19,7 @@ export function AboutStrip() {
               alt="Declan Malone"
               width={560}
               height={700}
-              className="rounded-2xl object-cover"
+              className="object-cover"
               priority
             />
           </div>

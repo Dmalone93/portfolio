@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { getProfile, getResumeContent } from "@/lib/site-content";
 import { ScrollReveal } from "@/components/scroll-reveal";
-import { MediaPlaceholder } from "@/components/media-placeholder";
 
 export default async function AboutPage() {
   const [profile, resume] = await Promise.all([getProfile(), getResumeContent()]);
@@ -98,7 +98,13 @@ export default async function AboutPage() {
         <div className="lg:w-[40%]">
           <div className="lg:sticky lg:top-24">
             <ScrollReveal>
-              <MediaPlaceholder label="Photo / video" aspectRatio="3/4" />
+              <Image
+                src="/declan.png"
+                alt="Declan Malone"
+                width={560}
+                height={700}
+                className="object-cover"
+              />
             </ScrollReveal>
           </div>
         </div>
