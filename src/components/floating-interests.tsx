@@ -9,8 +9,8 @@ const interests = [
   { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 8, startLeft: 30, size: 100, mobileSize: 40, rotate: 12, delay: 400 },
   { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 55, startLeft: 5, size: 150, mobileSize: 55, rotate: -3, delay: 600 },
   { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 72, startLeft: 55, size: 100, mobileSize: 45, rotate: 2, delay: 800 },
-  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 45, startLeft: 65, size: 220, mobileSize: 75, rotate: -7, delay: 500 },
-  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 260, mobileSize: 90, rotate: -2, delay: 900 },
+  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 5, startLeft: 42, size: 120, mobileSize: 50, rotate: -7, delay: 500 },
+  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 75, startLeft: 12, size: 350, mobileSize: 120, rotate: -2, delay: 900 },
 ];
 
 // Target: the portrait in the hero (right side on desktop)

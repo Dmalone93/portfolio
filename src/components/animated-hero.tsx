@@ -252,7 +252,7 @@ export function AnimatedHero({
           </p>
           </div>
 
-          {/* Portrait — inline with content */}
+          {/* Portrait with glitch effect on hover */}
           <div
             className="hidden lg:block lg:shrink-0 transition-[opacity,transform] duration-1000"
             style={{
@@ -262,16 +262,7 @@ export function AnimatedHero({
               transform: mounted ? "translateY(0)" : "translateY(20px)",
             }}
           >
-            <div className="relative h-[450px] w-[340px]">
-              <Image
-                src="/declan.png"
-                alt="Declan Malone"
-                fill
-                className="object-contain object-top"
-                sizes="340px"
-                priority
-              />
-            </div>
+            <PortraitGlitch />
           </div>
         </div>
       </div>
@@ -290,5 +281,89 @@ export function AnimatedHero({
         </svg>
       </div>
     </section>
+  );
+}
+
+const matrixChars = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン01{}[]<>/=;:";
+
+function PortraitGlitch() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [hovered, setHovered] = useState(false);
+  const animRef = useRef<number>(0);
+
+  useEffect(() => {
+    if (!hovered) {
+      cancelAnimationFrame(animRef.current);
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      return;
+    }
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 340 * dpr;
+    canvas.height = 450 * dpr;
+    ctx.scale(dpr, dpr);
+
+    const columns = Math.floor(340 / 14);
+    const drops: number[] = new Array(columns).fill(0).map(() => Math.random() * -30);
+
+    function draw() {
+      ctx!.fillStyle = "rgba(0, 0, 0, 0.04)";
+      ctx!.fillRect(0, 0, 340, 450);
+
+      ctx!.fillStyle = "rgba(0, 200, 80, 0.6)";
+      ctx!.font = "12px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+        const x = i * 14;
+        const y = drops[i] * 14;
+
+        if (y > 0) {
+          ctx!.fillText(char, x, y);
+        }
+
+        if (y > 450 && Math.random() > 0.98) {
+          drops[i] = 0;
+        }
+        drops[i] += 0.4 + Math.random() * 0.3;
+      }
+
+      animRef.current = requestAnimationFrame(draw);
+    }
+
+    animRef.current = requestAnimationFrame(draw);
+    return () => cancelAnimationFrame(animRef.current);
+  }, [hovered]);
+
+  return (
+    <div
+      className="relative h-[450px] w-[340px] cursor-pointer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <Image
+        src="/declan.png"
+        alt="Declan Malone"
+        fill
+        className={`object-contain object-top transition-all duration-300 ${hovered ? "brightness-50 contrast-125" : ""}`}
+        sizes="340px"
+        priority
+      />
+      {/* Matrix rain overlay */}
+      <canvas
+        ref={canvasRef}
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${hovered ? "opacity-100" : "opacity-0"}`}
+        style={{ width: 340, height: 450 }}
+      />
+    </div>
   );
 }
