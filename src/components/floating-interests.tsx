@@ -4,14 +4,14 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 const interests = [
-  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 8, startLeft: 78, size: 200, rotate: 6, delay: 0 },
-  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 20, startLeft: 2, size: 180, rotate: -4, delay: 200 },
-  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 42, startLeft: 84, size: 110, rotate: 3, delay: 400 },
-  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 52, startLeft: 4, size: 170, rotate: -6, delay: 600 },
-  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 60, startLeft: 68, size: 320, rotate: 2, delay: 800 },
-  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 35, startLeft: 1, size: 120, rotate: 5, delay: 500 },
-  { label: "Coffee", image: "/hobbies/coffee.png", note: "Aeropress ritual. The process matters as much as the result — measure, pour, press. Design thinking in a cup.", startTop: 15, startLeft: 45, size: 150, rotate: -3, delay: 700 },
-  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 78, startLeft: 15, size: 250, rotate: 1, delay: 900 },
+  { label: "Climbing", image: "/hobbies/climbing.png", note: "Problem-solving with your body. Every route is a design challenge — read it, plan it, execute it.", startTop: 3, startLeft: 88, size: 120, rotate: 6, delay: 0 },
+  { label: "Anime", image: "/hobbies/anime.png", note: "Berserk taught me more about persistence and craft than any design book. Miura drew for 30 years and never compromised.", startTop: 75, startLeft: -2, size: 110, rotate: -4, delay: 200 },
+  { label: "Netsuke", image: "/hobbies/netsuke.png", note: "Tiny carved objects from Edo-era Japan. Incredible detail at miniature scale — proof that constraints breed the best work.", startTop: 30, startLeft: 90, size: 80, rotate: 3, delay: 400 },
+  { label: "One Piece TCG", image: "/hobbies/onepiece-tcg.png", note: "Collector and player. Built MyTCG because no tool existed for tracking a collection properly. Scratch your own itch.", startTop: 5, startLeft: -3, size: 100, rotate: -6, delay: 600 },
+  { label: "Camping", image: "/hobbies/camping.png", note: "Slowing down, making coffee with an Aeropress in the middle of nowhere. Best way to reset.", startTop: 80, startLeft: 85, size: 160, rotate: 2, delay: 800 },
+  { label: "Trees", image: "/hobbies/trees.png", note: "There's something about old trees. Standing in one place for hundreds of years, adapting to everything. Quiet resilience.", startTop: 55, startLeft: -2, size: 90, rotate: 5, delay: 500 },
+  { label: "Coffee", image: "/hobbies/coffee.png", note: "Aeropress ritual. The process matters as much as the result — measure, pour, press. Design thinking in a cup.", startTop: 55, startLeft: 92, size: 100, rotate: -3, delay: 700 },
+  { label: "Tent life", image: "/hobbies/tent.png", note: "Setting up camp, disconnecting from screens, reconnecting with the basics. The best ideas come when you stop trying.", startTop: 85, startLeft: 30, size: 140, rotate: 1, delay: 900 },
 ];
 
 // Target: the portrait in the hero (right side on desktop)
@@ -22,7 +22,7 @@ const CONVERGE_END = 80;
 
 export function FloatingInterests() {
   return (
-    <div className="pointer-events-none fixed inset-0 z-10 scale-[0.45] sm:scale-[0.6] lg:scale-100 origin-center" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-10 hidden sm:block" aria-hidden="true">
       {interests.map((item) => (
         <FloatingItem key={item.label} {...item} />
       ))}
